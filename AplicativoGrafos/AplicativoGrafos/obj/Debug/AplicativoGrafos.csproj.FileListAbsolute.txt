@@ -1,0 +1,10 @@
+C:\Users\adria\OneDrive - Universidad Tecnica del Norte\Documentos\GitHub\AplicativoGrafos\AplicativoGrafos\AplicativoGrafos\bin\Debug\AplicativoGrafos.exe.config
+C:\Users\adria\OneDrive - Universidad Tecnica del Norte\Documentos\GitHub\AplicativoGrafos\AplicativoGrafos\AplicativoGrafos\bin\Debug\AplicativoGrafos.exe
+C:\Users\adria\OneDrive - Universidad Tecnica del Norte\Documentos\GitHub\AplicativoGrafos\AplicativoGrafos\AplicativoGrafos\bin\Debug\AplicativoGrafos.pdb
+C:\Users\adria\OneDrive - Universidad Tecnica del Norte\Documentos\GitHub\AplicativoGrafos\AplicativoGrafos\AplicativoGrafos\obj\Debug\AplicativoGrafos.csproj.AssemblyReference.cache
+C:\Users\adria\OneDrive - Universidad Tecnica del Norte\Documentos\GitHub\AplicativoGrafos\AplicativoGrafos\AplicativoGrafos\obj\Debug\AplicativoGrafos.Form1.resources
+C:\Users\adria\OneDrive - Universidad Tecnica del Norte\Documentos\GitHub\AplicativoGrafos\AplicativoGrafos\AplicativoGrafos\obj\Debug\AplicativoGrafos.Properties.Resources.resources
+C:\Users\adria\OneDrive - Universidad Tecnica del Norte\Documentos\GitHub\AplicativoGrafos\AplicativoGrafos\AplicativoGrafos\obj\Debug\AplicativoGrafos.csproj.GenerateResource.cache
+C:\Users\adria\OneDrive - Universidad Tecnica del Norte\Documentos\GitHub\AplicativoGrafos\AplicativoGrafos\AplicativoGrafos\obj\Debug\AplicativoGrafos.csproj.CoreCompileInputs.cache
+C:\Users\adria\OneDrive - Universidad Tecnica del Norte\Documentos\GitHub\AplicativoGrafos\AplicativoGrafos\AplicativoGrafos\obj\Debug\AplicativoGrafos.exe
+C:\Users\adria\OneDrive - Universidad Tecnica del Norte\Documentos\GitHub\AplicativoGrafos\AplicativoGrafos\AplicativoGrafos\obj\Debug\AplicativoGrafos.pdb

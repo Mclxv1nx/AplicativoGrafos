@@ -16,5 +16,12 @@ namespace AplicativoGrafos
         {
             InitializeComponent();
         }
+
+        private void btnConectar_Click(object sender, EventArgs e)
+        {
+            int valor = 1;
+            valor++;
+            this.lblCont.Text = valor+"";
+        }
     }
 }
