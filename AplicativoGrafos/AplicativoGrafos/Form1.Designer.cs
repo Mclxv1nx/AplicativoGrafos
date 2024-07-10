@@ -48,7 +48,7 @@
             // 
             // btnFloyd
             // 
-            this.btnFloyd.Location = new System.Drawing.Point(145, 279);
+            this.btnFloyd.Location = new System.Drawing.Point(176, 301);
             this.btnFloyd.Name = "btnFloyd";
             this.btnFloyd.Size = new System.Drawing.Size(105, 59);
             this.btnFloyd.TabIndex = 0;
@@ -57,7 +57,7 @@
             // 
             // btnDijkstra
             // 
-            this.btnDijkstra.Location = new System.Drawing.Point(12, 279);
+            this.btnDijkstra.Location = new System.Drawing.Point(43, 301);
             this.btnDijkstra.Name = "btnDijkstra";
             this.btnDijkstra.Size = new System.Drawing.Size(105, 59);
             this.btnDijkstra.TabIndex = 1;
@@ -193,7 +193,8 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(780, 501);
+            this.ClientSize = new System.Drawing.Size(786, 502);
+            this.Controls.Add(this.btnFloyd);
             this.Controls.Add(this.btnConectar);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.lblCont);
@@ -208,7 +209,6 @@
             this.Controls.Add(this.txtNodo1);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btnDijkstra);
-            this.Controls.Add(this.btnFloyd);
             this.Name = "Form1";
             this.Text = "Aplicativo Grafos";
             ((System.ComponentModel.ISupportInitialize)(this.nupArista)).EndInit();

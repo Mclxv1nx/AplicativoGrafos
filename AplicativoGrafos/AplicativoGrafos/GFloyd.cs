@@ -22,7 +22,7 @@ namespace AplicativoGrafos
         /// <summary>
         /// Matriz bidimensional que guarda las direcciones de memoria de los nodos. 
         /// </summary>
-        internal NodoF[,] Recorridos { get => recorridos; set => recorridos = value; }
+        public NodoF[,] Recorridos { get => recorridos; set => recorridos = value; }
 
         /// <summary>
         /// Constructor de la clase Grafo correspondiente al algoritmo de Floyd.
