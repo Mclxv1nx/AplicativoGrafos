@@ -4,3 +4,7 @@ AplicativoGrafos/AplicativoGrafos/obj/Debug/DesignTimeResolveAssemblyReferences.
 AplicativoGrafos/AplicativoGrafos/obj/Debug/AplicativoGrafos.csproj.SuggestedBindingRedirects.cache
 AplicativoGrafos/AplicativoGrafos/obj/Debug/AplicativoGrafos.csproj.GenerateResource.cache
 AplicativoGrafos/AplicativoGrafos/obj/Debug/AplicativoGrafos.csproj.CoreCompileInputs.cache
+*.vsidx
+AplicativoGrafos/.vs/AplicativoGrafos/v17/.suo
+AplicativoGrafos/AplicativoGrafos/bin/Debug/AplicativoGrafos.pdb
+AplicativoGrafos/AplicativoGrafos/obj/Debug/AplicativoGrafos.pdb
