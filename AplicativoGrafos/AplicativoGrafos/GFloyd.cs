@@ -73,7 +73,15 @@ namespace AplicativoGrafos
             this.arista = arista;
             this.nombre = nombre;
         }
-
+        /// <summary>
+        /// Solo para Asignar Nombre de Nodos que no se conecten
+        /// </summary>
+        /// <param name="nombre"></param>
+        public NodoF(string nombre)
+        {
+            
+            this.nombre = nombre;
+        }
         /// <summary>
         /// Constructor vacío necesario para inicializar la clase.
         /// </summary>

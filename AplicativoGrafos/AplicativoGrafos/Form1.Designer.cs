@@ -41,8 +41,12 @@
             this.nupArista = new System.Windows.Forms.NumericUpDown();
             this.lblContNodo = new System.Windows.Forms.Label();
             this.lblCont = new System.Windows.Forms.Label();
-            this.panel1 = new System.Windows.Forms.Panel();
+            this.pnlMatriz1 = new System.Windows.Forms.Panel();
             this.btnConectar = new System.Windows.Forms.Button();
+            this.pnlMatriz2 = new System.Windows.Forms.Panel();
+            this.lblPond = new System.Windows.Forms.Label();
+            this.lblReco = new System.Windows.Forms.Label();
+            this.lbxRespuestas = new System.Windows.Forms.ListBox();
             ((System.ComponentModel.ISupportInitialize)(this.nupArista)).BeginInit();
             this.SuspendLayout();
             // 
@@ -54,6 +58,7 @@
             this.btnFloyd.TabIndex = 0;
             this.btnFloyd.Text = "Floyd";
             this.btnFloyd.UseVisualStyleBackColor = true;
+            this.btnFloyd.Click += new System.EventHandler(this.btnFloyd_Click);
             // 
             // btnDijkstra
             // 
@@ -172,12 +177,12 @@
             this.lblCont.TabIndex = 14;
             this.lblCont.Text = "0";
             // 
-            // panel1
+            // pnlMatriz1
             // 
-            this.panel1.Location = new System.Drawing.Point(331, 97);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(437, 392);
-            this.panel1.TabIndex = 15;
+            this.pnlMatriz1.Location = new System.Drawing.Point(343, 97);
+            this.pnlMatriz1.Name = "pnlMatriz1";
+            this.pnlMatriz1.Size = new System.Drawing.Size(352, 321);
+            this.pnlMatriz1.TabIndex = 15;
             // 
             // btnConectar
             // 
@@ -189,14 +194,53 @@
             this.btnConectar.UseVisualStyleBackColor = true;
             this.btnConectar.Click += new System.EventHandler(this.btnConectar_Click);
             // 
+            // pnlMatriz2
+            // 
+            this.pnlMatriz2.Location = new System.Drawing.Point(751, 97);
+            this.pnlMatriz2.Name = "pnlMatriz2";
+            this.pnlMatriz2.Size = new System.Drawing.Size(362, 321);
+            this.pnlMatriz2.TabIndex = 16;
+            // 
+            // lblPond
+            // 
+            this.lblPond.AutoSize = true;
+            this.lblPond.Location = new System.Drawing.Point(450, 75);
+            this.lblPond.Name = "lblPond";
+            this.lblPond.Size = new System.Drawing.Size(124, 16);
+            this.lblPond.TabIndex = 17;
+            this.lblPond.Text = "PONDERACIONES";
+            // 
+            // lblReco
+            // 
+            this.lblReco.AutoSize = true;
+            this.lblReco.Location = new System.Drawing.Point(884, 75);
+            this.lblReco.Name = "lblReco";
+            this.lblReco.Size = new System.Drawing.Size(97, 16);
+            this.lblReco.TabIndex = 18;
+            this.lblReco.Text = "RECORRIDOS";
+            // 
+            // lbxRespuestas
+            // 
+            this.lbxRespuestas.FormattingEnabled = true;
+            this.lbxRespuestas.ItemHeight = 16;
+            this.lbxRespuestas.Location = new System.Drawing.Point(542, 424);
+            this.lbxRespuestas.Name = "lbxRespuestas";
+            this.lbxRespuestas.Size = new System.Drawing.Size(352, 148);
+            this.lbxRespuestas.TabIndex = 19;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(786, 502);
+            this.BackColor = System.Drawing.Color.LightGray;
+            this.ClientSize = new System.Drawing.Size(1206, 594);
+            this.Controls.Add(this.lbxRespuestas);
+            this.Controls.Add(this.lblReco);
+            this.Controls.Add(this.lblPond);
+            this.Controls.Add(this.pnlMatriz2);
             this.Controls.Add(this.btnFloyd);
             this.Controls.Add(this.btnConectar);
-            this.Controls.Add(this.panel1);
+            this.Controls.Add(this.pnlMatriz1);
             this.Controls.Add(this.lblCont);
             this.Controls.Add(this.lblContNodo);
             this.Controls.Add(this.nupArista);
@@ -232,8 +276,12 @@
         private System.Windows.Forms.NumericUpDown nupArista;
         private System.Windows.Forms.Label lblContNodo;
         private System.Windows.Forms.Label lblCont;
-        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Panel pnlMatriz1;
         private System.Windows.Forms.Button btnConectar;
+        private System.Windows.Forms.Panel pnlMatriz2;
+        private System.Windows.Forms.Label lblPond;
+        private System.Windows.Forms.Label lblReco;
+        private System.Windows.Forms.ListBox lbxRespuestas;
     }
 }
 
