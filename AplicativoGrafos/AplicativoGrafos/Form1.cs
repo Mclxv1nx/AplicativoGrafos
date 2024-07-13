@@ -22,6 +22,8 @@ namespace AplicativoGrafos
             ///FINES DE DEVELOPING. SE PUEDE COMENTAR SI LE ESTORBA
             //Creo mis nodos desde codigo desde un inicio
             //con el fin de programar mas rapido
+            
+            //Primer grafo
             /*NodoF A = new NodoF("A");
             NodoF B = new NodoF("B");
             NodoF D = new NodoF("D");
@@ -46,10 +48,12 @@ namespace AplicativoGrafos
             {
                 A, B, C, D
             });
+            
+            //Ejecuto el algoritmo
+            floyd.BuscarCaminos(); */
 
-            //Ejecuto el algoritmo*/
-
-            NodoF v1 = new NodoF("V1");
+            //Segundo grafo
+            /*NodoF v1 = new NodoF("V1");
             NodoF v2 = new NodoF("V2");
             NodoF v3 = new NodoF("V3");
             NodoF v4 = new NodoF("V4");
@@ -87,7 +91,7 @@ namespace AplicativoGrafos
             {
                 v1, v2, v3, v4, v5, v6, v7
             });
-            floyd.BuscarCaminos();
+            floyd.BuscarCaminos();*/
         }
 
         private void btnConectar_Click(object sender, EventArgs e) // Es el boton añadir
