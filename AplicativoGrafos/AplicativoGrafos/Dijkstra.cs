@@ -1,8 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace AplicativoGrafos
 {
@@ -23,12 +20,12 @@ namespace AplicativoGrafos
         /// <param name="id">Identificador del nodo</param>
         public NodoD(string id)
         {
-            // Asigna el identificador pasado como parámetro a la propiedad Id
+            // Asigna el identificador pasado como parametro a la propiedad Id
             Id = id;
         }
 
         /// <summary>
-        /// Agrega una arista desde este nodo a un nodo de destino con un peso específico.
+        /// Agrega una arista desde este nodo a un nodo de destino con un peso especifico.
         /// </summary>
         /// <param name="destino">Nodo al que apunta la arista</param>
         /// <param name="peso">Peso de la arista</param>
@@ -40,7 +37,7 @@ namespace AplicativoGrafos
     }
 
     /// <summary>
-    /// Representa una arista en el grafo, que es una conexión entre dos nodos con un peso asociado.
+    /// Representa una arista en el grafo, que es una conexion entre dos nodos con un peso asociado.
     /// </summary>
     internal class AristaD
     {
@@ -57,16 +54,16 @@ namespace AplicativoGrafos
         /// <param name="peso">Peso de la arista</param>
         public AristaD(NodoD destino, int peso)
         {
-            // Asigna el nodo de destino pasado como parámetro a la propiedad Destino
+            // Asigna el nodo de destino pasado como parï¿½metro a la propiedad Destino
             Destino = destino;
 
-            // Asigna el peso pasado como parámetro a la propiedad Peso
+            // Asigna el peso pasado como parï¿½metro a la propiedad Peso
             Peso = peso;
         }
     }
 
     /// <summary>
-    /// Implementa el algoritmo de Dijkstra para encontrar las distancias más cortas desde un nodo de inicio a todos los demás nodos en un grafo.
+    /// Implementa el algoritmo de Dijkstra para encontrar las distancias mï¿½s cortas desde un nodo de inicio a todos los demï¿½s nodos en un grafo.
     /// </summary>
     internal class Dijkstra
     {
@@ -102,19 +99,19 @@ namespace AplicativoGrafos
         }
 
         /// <summary>
-        /// Aplica el algoritmo de Dijkstra para calcular las distancias más cortas desde un nodo de inicio a todos los demás nodos.
+        /// Aplica el algoritmo de Dijkstra para calcular las distancias mï¿½s cortas desde un nodo de inicio a todos los demï¿½s nodos.
         /// </summary>
         /// <param name="inicioId">ID del nodo de inicio</param>
-        /// <returns>Diccionario con las distancias más cortas desde el nodo de inicio a cada nodo</returns>
+        /// <returns>Diccionario con las distancias mï¿½s cortas desde el nodo de inicio a cada nodo</returns>
         public Dictionary<string, int> Dijkstra(string inicioId)
         {
-            // Diccionario para almacenar las distancias más cortas desde el nodo de inicio a cada nodo
+            // Diccionario para almacenar las distancias mï¿½s cortas desde el nodo de inicio a cada nodo
             var distancias = new Dictionary<string, int>();
 
-            // Diccionario para almacenar el nodo predecesor de cada nodo en el camino más corto
+            // Diccionario para almacenar el nodo predecesor de cada nodo en el camino mï¿½s corto
             var nodoPredecesor = new Dictionary<string, string>();
 
-            // Conjunto para almacenar los nodos que aún no han sido visitados
+            // Conjunto para almacenar los nodos que aï¿½n no han sido visitados
             var nodosSinVisitar = new HashSet<string>();
 
             // Inicializa las distancias a infinito y el conjunto de nodos sin visitar
@@ -146,7 +143,7 @@ namespace AplicativoGrafos
                     }
                 }
 
-                // Marca el nodo actual como visitado, eliminándolo del conjunto de nodos sin visitar
+                // Marca el nodo actual como visitado, eliminï¿½ndolo del conjunto de nodos sin visitar
                 nodosSinVisitar.Remove(nodoActual);
 
                 // Actualiza las distancias a los nodos vecinos
@@ -167,14 +164,14 @@ namespace AplicativoGrafos
                 }
             }
 
-            // Retorna el diccionario de distancias más cortas desde el nodo de inicio a cada nodo
+            // Retorna el diccionario de distancias mï¿½s cortas desde el nodo de inicio a cada nodo
             return distancias;
         }
     }
 
     /// <summary>
-    /// Esta clase contiene el método Main, el cual es el punto de entrada del programa.
-    /// En este método se crea un grafo, se agregan nodos y aristas, y se ejecuta el algoritmo de Dijkstra.
+    /// Esta clase contiene el mï¿½todo Main, el cual es el punto de entrada del programa.
+    /// En este mï¿½todo se crea un grafo, se agregan nodos y aristas, y se ejecuta el algoritmo de Dijkstra.
     /// </summary>
     class ProgramDjk
     {
@@ -206,9 +203,9 @@ namespace AplicativoGrafos
             grafo.AgregarArista("v6", "v7", 1);
             grafo.AgregarArista("v7", "v5", 6);
 
-            // Calcula las distancias más cortas desde el nodo "v1" a
+            // Calcula las distancias mï¿½s cortas desde el nodo "v1" a
 
-            todos los demás nodos
+            todos los demï¿½s nodos
             var distancias = grafo.Dijkstra("v1");
 
             // Imprime las distancias calculadas
