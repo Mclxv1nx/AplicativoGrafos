@@ -41,12 +41,12 @@
             this.nupArista = new System.Windows.Forms.NumericUpDown();
             this.lblContNodo = new System.Windows.Forms.Label();
             this.lblCont = new System.Windows.Forms.Label();
-            this.pnlMatriz1 = new System.Windows.Forms.Panel();
             this.btnConectar = new System.Windows.Forms.Button();
-            this.pnlMatriz2 = new System.Windows.Forms.Panel();
             this.lblPond = new System.Windows.Forms.Label();
             this.lblReco = new System.Windows.Forms.Label();
             this.lbxRespuestas = new System.Windows.Forms.ListBox();
+            this.lbxPonderaciones = new System.Windows.Forms.ListBox();
+            this.lbxRecorridos = new System.Windows.Forms.ListBox();
             ((System.ComponentModel.ISupportInitialize)(this.nupArista)).BeginInit();
             this.SuspendLayout();
             // 
@@ -177,13 +177,6 @@
             this.lblCont.TabIndex = 14;
             this.lblCont.Text = "0";
             // 
-            // pnlMatriz1
-            // 
-            this.pnlMatriz1.Location = new System.Drawing.Point(343, 97);
-            this.pnlMatriz1.Name = "pnlMatriz1";
-            this.pnlMatriz1.Size = new System.Drawing.Size(352, 321);
-            this.pnlMatriz1.TabIndex = 15;
-            // 
             // btnConectar
             // 
             this.btnConectar.Location = new System.Drawing.Point(250, 128);
@@ -193,13 +186,6 @@
             this.btnConectar.Text = "Añadir";
             this.btnConectar.UseVisualStyleBackColor = true;
             this.btnConectar.Click += new System.EventHandler(this.btnConectar_Click);
-            // 
-            // pnlMatriz2
-            // 
-            this.pnlMatriz2.Location = new System.Drawing.Point(751, 97);
-            this.pnlMatriz2.Name = "pnlMatriz2";
-            this.pnlMatriz2.Size = new System.Drawing.Size(362, 321);
-            this.pnlMatriz2.TabIndex = 16;
             // 
             // lblPond
             // 
@@ -228,19 +214,37 @@
             this.lbxRespuestas.Size = new System.Drawing.Size(352, 148);
             this.lbxRespuestas.TabIndex = 19;
             // 
+            // lbxPonderaciones
+            // 
+            this.lbxPonderaciones.FormattingEnabled = true;
+            this.lbxPonderaciones.ItemHeight = 16;
+            this.lbxPonderaciones.Location = new System.Drawing.Point(388, 94);
+            this.lbxPonderaciones.Name = "lbxPonderaciones";
+            this.lbxPonderaciones.Size = new System.Drawing.Size(352, 148);
+            this.lbxPonderaciones.TabIndex = 20;
+            // 
+            // lbxRecorridos
+            // 
+            this.lbxRecorridos.FormattingEnabled = true;
+            this.lbxRecorridos.ItemHeight = 16;
+            this.lbxRecorridos.Location = new System.Drawing.Point(771, 94);
+            this.lbxRecorridos.Name = "lbxRecorridos";
+            this.lbxRecorridos.Size = new System.Drawing.Size(352, 148);
+            this.lbxRecorridos.TabIndex = 21;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.LightGray;
             this.ClientSize = new System.Drawing.Size(1206, 594);
+            this.Controls.Add(this.lbxRecorridos);
+            this.Controls.Add(this.lbxPonderaciones);
             this.Controls.Add(this.lbxRespuestas);
             this.Controls.Add(this.lblReco);
             this.Controls.Add(this.lblPond);
-            this.Controls.Add(this.pnlMatriz2);
             this.Controls.Add(this.btnFloyd);
             this.Controls.Add(this.btnConectar);
-            this.Controls.Add(this.pnlMatriz1);
             this.Controls.Add(this.lblCont);
             this.Controls.Add(this.lblContNodo);
             this.Controls.Add(this.nupArista);
@@ -276,12 +280,12 @@
         private System.Windows.Forms.NumericUpDown nupArista;
         private System.Windows.Forms.Label lblContNodo;
         private System.Windows.Forms.Label lblCont;
-        private System.Windows.Forms.Panel pnlMatriz1;
         private System.Windows.Forms.Button btnConectar;
-        private System.Windows.Forms.Panel pnlMatriz2;
         private System.Windows.Forms.Label lblPond;
         private System.Windows.Forms.Label lblReco;
         private System.Windows.Forms.ListBox lbxRespuestas;
+        private System.Windows.Forms.ListBox lbxPonderaciones;
+        private System.Windows.Forms.ListBox lbxRecorridos;
     }
 }
 

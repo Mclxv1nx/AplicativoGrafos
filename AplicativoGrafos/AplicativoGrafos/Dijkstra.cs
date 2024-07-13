@@ -103,7 +103,7 @@ namespace AplicativoGrafos
         /// </summary>
         /// <param name="inicioId">ID del nodo de inicio</param>
         /// <returns>Diccionario con las distancias m�s cortas desde el nodo de inicio a cada nodo</returns>
-        public Dictionary<string, int> Dijkstra(string inicioId)
+        public Dictionary<string, int> GDijkstra(string inicioId)
         {
             // Diccionario para almacenar las distancias m�s cortas desde el nodo de inicio a cada nodo
             var distancias = new Dictionary<string, int>();
@@ -173,7 +173,7 @@ namespace AplicativoGrafos
     /// Esta clase contiene el m�todo Main, el cual es el punto de entrada del programa.
     /// En este m�todo se crea un grafo, se agregan nodos y aristas, y se ejecuta el algoritmo de Dijkstra.
     /// </summary>
-    class ProgramDjk
+    /*class ProgramDjk
     {
         static void Main(string[] args)
         {
@@ -203,10 +203,10 @@ namespace AplicativoGrafos
             grafo.AgregarArista("v6", "v7", 1);
             grafo.AgregarArista("v7", "v5", 6);
 
-            // Calcula las distancias m�s cortas desde el nodo "v1" a
+            // Calcula las distancias m�s cortas desde el nodo "v1" a todos los demás nodos
 
-            todos los dem�s nodos
-            var distancias = grafo.Dijkstra("v1");
+
+            var distancias = grafo.GDijkstra("v1");
 
             // Imprime las distancias calculadas
             foreach (var distancia in distancias)
@@ -214,6 +214,5 @@ namespace AplicativoGrafos
                 Console.WriteLine($"Distancia desde v1 a {distancia.Key}: {distancia.Value}");
             }
         }
-    }
+    }*/
 }
-```
