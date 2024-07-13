@@ -92,6 +92,9 @@ namespace AplicativoGrafos
         }
     }
 
+    /// <summary>
+    /// Test de funcionamiento
+    /// </summary>
     class ProgramDjk
     {
         static void Main(string[] args)
