@@ -51,26 +51,26 @@ namespace AplicativoGrafos
     /// </summary>
     internal class NodoF
     {
-        private AristaF arista;
+        private List<AristaF> aristas = new List<AristaF>();
         private string nombre;
 
         /// <summary>
-        /// Es el enlace que une este nodo con un nodo designado en la Arista.
+        /// Lista de Aristas salientes del nodo. 
         /// </summary>
-        internal AristaF Arista { get => arista; set => arista = value; }
+        internal List<AristaF> Aristas { get => aristas; set => aristas = value; }
         /// <summary>
         /// El nombre con que se identifica el Nodo. Es recomendable que sea único.
         /// </summary>
         public string Nombre { get => nombre; set => nombre = value; }
-
+        
         /// <summary>
-        /// Constructor con ambos parámetros en caso de querer designarlos.
+        /// Constructor para crear un nodo con su primer arista correspondiente.
         /// </summary>
-        /// <param name="nombre">El nombre con que se identifica el Nodo. Es recomendable que sea único.</param>
-        /// <param name="arista">Es el enlace que une este nodo con un nodo designado en la Arista.</param>
+        /// <param name="nombre">Nombre del nodo</param>
+        /// <param name="arista">Primer arista de la lista.</param>
         public NodoF(string nombre, AristaF arista)
         {
-            this.arista = arista;
+            aristas.Add(arista);
             this.nombre = nombre;
         }
         /// <summary>
@@ -78,8 +78,7 @@ namespace AplicativoGrafos
         /// </summary>
         /// <param name="nombre"></param>
         public NodoF(string nombre)
-        {
-            
+        { 
             this.nombre = nombre;
         }
         /// <summary>
@@ -121,7 +120,7 @@ namespace AplicativoGrafos
         /// <param name="nodo">Es el nodo que le precede</param>
         public AristaF(int peso, NodoF nodo)
         {
-            if (peso > 1) this.peso = peso;
+            if (peso >= 1) this.peso = peso;
             else throw new ErroresFloyd("Número inválido: el peso debe ser mayor que 1.");
             this.nodo = nodo;
         }
@@ -132,28 +131,28 @@ namespace AplicativoGrafos
         public AristaF()
         {
         }
+    }
 
-        /// <summary>
-        /// Son excepciones / errores personalizados 
-        /// </summary>
-        [Serializable]
-        private class ErroresFloyd : Exception
+    /// <summary>
+    /// Son excepciones / errores personalizados 
+    /// </summary>
+    [Serializable]
+    internal class ErroresFloyd : Exception
+    {
+        public ErroresFloyd()
         {
-            public ErroresFloyd()
-            {
-            }
+        }
 
-            public ErroresFloyd(string message) : base(message)
-            {
-            }
+        public ErroresFloyd(string message) : base(message)
+        {
+        }
 
-            public ErroresFloyd(string message, Exception innerException) : base(message, innerException)
-            {
-            }
+        public ErroresFloyd(string message, Exception innerException) : base(message, innerException)
+        {
+        }
 
-            protected ErroresFloyd(SerializationInfo info, StreamingContext context) : base(info, context)
-            {
-            }
+        protected ErroresFloyd(SerializationInfo info, StreamingContext context) : base(info, context)
+        {
         }
     }
 }

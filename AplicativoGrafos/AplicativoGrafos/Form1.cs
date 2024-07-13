@@ -33,17 +33,18 @@ namespace AplicativoGrafos
                 return;
             }
 
-            if (peso <= 1)
+            if (peso < 1)
             {
-                MessageBox.Show("El peso debe ser mayor que 1.");
+                MessageBox.Show("El peso debe ser mayor o igual que 1.");
                 return;
             }
-            NodoF nodo2 = new NodoF(nodoNombre2, null);
+            NodoF nodo2 = new NodoF(nodoNombre2);
             AristaF aristaConexion = new AristaF(peso, nodo2);
             NodoF nodo1 = new NodoF(nodoNombre1, aristaConexion);
-            
 
-            contador++;
+
+            this.lbxRespuestas.Items.Clear(); //Es necesario primero siempre limpiar la lista.
+            contador++; 
             this.lblCont.Text = (contador - 1) + "";
             string resp= $"{nodo1.Nombre} conectado con {nodo2.Nombre}";
             this.lbxRespuestas.Items.Add(resp); 
