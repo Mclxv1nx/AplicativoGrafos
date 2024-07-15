@@ -133,17 +133,42 @@ namespace AplicativoGrafos
                 return;
             }
 
-            // Ejecutar el algoritmo de Dijkstra
             var distancias = dijkstra.GDijkstra(nodoInicio);
 
-            // Mostrar los resultados en lbxDijkstra
             this.lbxDijsktra.Items.Clear();
             this.lbxDijsktra.Items.Add($"Caminos más cortos desde el nodo {nodoInicio}:");
 
             foreach (var distancia in distancias)
             {
-                this.lbxDijsktra.Items.Add($"Distancia desde {nodoInicio} a {distancia.Key}: {distancia.Value}");
+                if (distancia.Value == int.MaxValue / 2)
+                {
+                    this.lbxDijsktra.Items.Add($"No hay camino desde {nodoInicio} a {distancia.Key}");
+                }
+                else
+                {
+                    this.lbxDijsktra.Items.Add($"Distancia desde {nodoInicio} a {distancia.Key}: {distancia.Value}");
+                }
             }
+        }
+        private void btnSalir_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void btnLimpiar_Click(object sender, EventArgs e)
+        {
+            contador = 0;
+            nodosExistentes.Clear();
+            this.lblCont.Text = contador.ToString();
+            this.lbxDijsktra.Items.Clear();
+            this.lbxRecorridos.Items.Clear();
+            this.lbxRespuestas.Items.Clear();
+            this.lbxPonderaciones.Items.Clear();
+            this.nupArista.Value = 1;
+            this.txtNodo1.Text = "";
+            this.txtNodo2.Text = "";
+            this.txtNodoInicio.Text = "";
+            GC.Collect();
         }
     }
 }
