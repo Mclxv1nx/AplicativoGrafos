@@ -157,40 +157,55 @@ namespace AplicativoGrafos
             }
         }
 
+        /// <summary>
+        /// Algoritmo de Búsqueda de Caminos manualmente. 
+        /// *SOLO SE DEBE EJECUTAR DESPUÉS DE HABER BUSCADO LOS CAMINOS*
+        /// </summary>
+        /// <param name="nodoOrigen">Es el nombre del nodo donde se empieza el camino</param>
+        /// <param name="nodoBusqueda">Es el nombre del nodo que se busca</param>
+        /// <returns></returns>
         public string DarCaminos(string nodoOrigen, string nodoBusqueda)
         {
+            //Primer recojo los indices de ambos nodos
             int primerNodo = IndexOf(nodoOrigen);
             int SegundoNodo = IndexOf(nodoBusqueda);
 
+            //Ahora descarto las posibilidades. 
+            //En el caso de que algún nodo no existiera dentro del grafo regresara un mensaje
             if (primerNodo == -1) return "Nodo Origen " + nodoOrigen + " no existe en el grafo";
             if (SegundoNodo == -1) return "Nodo Búsqueda " + nodoBusqueda + " no existe en el grafo";
+            //En el caso de que sea el mismo nodo que se busca también se descarta. 
             if (primerNodo == SegundoNodo) return "El camino es a si mismo";
 
-            int pesoTotal = pesos[primerNodo, SegundoNodo];
+            //Creo un Nodo aux para el bucle siguiente
             NodoF aux = recorridos[primerNodo, SegundoNodo];
-            List<string> nodoPath = new List<string>() { nodoOrigen };
+            //Empiezo creando una pila con el valor del nodoOrigen
+            Stack<string> nodoPath = new Stack<string>();
+            nodoPath.Push(nodoBusqueda);
+            //Creo un indice temporal para el bucle siguiente
             int temp = SegundoNodo;
 
+            /*
+             * En el bucle ahora lo que hace es que va a ir de posición
+             * en posición dentro de la matriz de recorridos. 
+             */
             while (aux != nodos[temp])
             {
-                temp = IndexOf(aux.Nombre);
+                nodoPath.Push(aux.Nombre); //Primero apilamos el nombre de aux
+                temp = IndexOf(aux.Nombre); //Ahora cambiamos el aux por medio del nuevo indice
                 aux = recorridos[primerNodo, temp];
-                nodoPath.Add(aux.Nombre);
-                pesoTotal += Pesos[primerNodo, temp];
-                temp = IndexOf(aux.Nombre);
             }
 
-            nodoPath.Add(nodoBusqueda);
+            //Finalmente ingresamos el nodo Origen dentro de la Pila
+            nodoPath.Push(nodoOrigen);
 
+            //Ahora solo creamos una string para devolver el mensaje. 
             string caminos = "";
 
-            for (int i = 0; i < nodoPath.Count; i++)
-            {
-                caminos += nodoPath[i] + ", ";
-            }
+            while (nodoPath.Count > 0) caminos += nodoPath.Pop() + ", ";
 
             return "Caminos: " + caminos.Substring(0, caminos.Length - 2) + ".\n" +
-                   "Peso total: " + pesoTotal;
+                   "Peso total: " + pesos[primerNodo, SegundoNodo];
         }
 
         /// <summary>
@@ -201,6 +216,7 @@ namespace AplicativoGrafos
         /// <returns></returns>
         private int IndexOf(string nombreNodo)
         {
+            //Solo aplico una busqueda lineal. El algoritmo mas basico. 
             int index = 0;
             for (int i = 0; i <= nodos.Length; i++)
             {

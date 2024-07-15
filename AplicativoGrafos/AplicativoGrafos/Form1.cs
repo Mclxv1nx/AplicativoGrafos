@@ -49,8 +49,8 @@ namespace AplicativoGrafos
             
             //Ejecuto el algoritmo
             floyd.BuscarCaminos();
-            Console.WriteLine(floyd.DarCaminos(D.Nombre, C.Nombre));*/
-            //Segundo grafo
+            Console.WriteLine(floyd.DarCaminos(A.Nombre, D.Nombre));*/
+            //Segundo grafo 
             /*NodoF v1 = new NodoF("V1");
             NodoF v2 = new NodoF("V2");
             NodoF v3 = new NodoF("V3");
@@ -90,7 +90,7 @@ namespace AplicativoGrafos
                 v1, v2, v3, v4, v5, v6, v7
             });
             floyd.BuscarCaminos();
-            Console.WriteLine(floyd.DarCaminos(v1.Nombre, v5.Nombre));*/
+            Console.WriteLine(floyd.DarCaminos(v1.Nombre, v6.Nombre));*/
 
             dijkstra = new Dijkstra();
         }
