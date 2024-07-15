@@ -47,7 +47,7 @@ namespace AplicativoGrafos
             origen.AgregarArista(destino, peso);
         }
 
-        public Dictionary<string, int> GDijkstra(string inicioId)
+        public (Dictionary<string, int>, Dictionary<string, string>) GDijkstra(string inicioId)
         {
             var distancias = new Dictionary<string, int>();
             var nodoPredecesor = new Dictionary<string, string>();
@@ -87,7 +87,7 @@ namespace AplicativoGrafos
                 }
             }
 
-            return distancias;
+            return (distancias, nodoPredecesor);
         }
     }
 }

@@ -54,14 +54,16 @@
             this.label4 = new System.Windows.Forms.Label();
             this.btnSalir = new System.Windows.Forms.Button();
             this.btnLimpiar = new System.Windows.Forms.Button();
+            this.lbxFloyd = new System.Windows.Forms.ListBox();
+            this.label5 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.nupArista)).BeginInit();
             this.SuspendLayout();
             // 
             // btnFloyd
             // 
-            this.btnFloyd.Location = new System.Drawing.Point(668, 12);
+            this.btnFloyd.Location = new System.Drawing.Point(731, 69);
             this.btnFloyd.Name = "btnFloyd";
-            this.btnFloyd.Size = new System.Drawing.Size(105, 59);
+            this.btnFloyd.Size = new System.Drawing.Size(105, 44);
             this.btnFloyd.TabIndex = 0;
             this.btnFloyd.Text = "Floyd";
             this.btnFloyd.UseVisualStyleBackColor = true;
@@ -216,10 +218,11 @@
             // lbxRespuestas
             // 
             this.lbxRespuestas.FormattingEnabled = true;
+            this.lbxRespuestas.HorizontalScrollbar = true;
             this.lbxRespuestas.ItemHeight = 16;
-            this.lbxRespuestas.Location = new System.Drawing.Point(623, 427);
+            this.lbxRespuestas.Location = new System.Drawing.Point(378, 369);
             this.lbxRespuestas.Name = "lbxRespuestas";
-            this.lbxRespuestas.Size = new System.Drawing.Size(352, 148);
+            this.lbxRespuestas.Size = new System.Drawing.Size(404, 212);
             this.lbxRespuestas.TabIndex = 19;
             // 
             // lbxPonderaciones
@@ -245,6 +248,7 @@
             // lbxDijsktra
             // 
             this.lbxDijsktra.FormattingEnabled = true;
+            this.lbxDijsktra.HorizontalScrollbar = true;
             this.lbxDijsktra.ItemHeight = 16;
             this.lbxDijsktra.Location = new System.Drawing.Point(20, 427);
             this.lbxDijsktra.Name = "lbxDijsktra";
@@ -279,7 +283,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(743, 396);
+            this.label4.Location = new System.Drawing.Point(515, 350);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(81, 16);
             this.label4.TabIndex = 26;
@@ -287,9 +291,9 @@
             // 
             // btnSalir
             // 
-            this.btnSalir.Location = new System.Drawing.Point(1079, 543);
+            this.btnSalir.Location = new System.Drawing.Point(1074, 587);
             this.btnSalir.Name = "btnSalir";
-            this.btnSalir.Size = new System.Drawing.Size(115, 76);
+            this.btnSalir.Size = new System.Drawing.Size(105, 44);
             this.btnSalir.TabIndex = 27;
             this.btnSalir.Text = "Salir";
             this.btnSalir.UseVisualStyleBackColor = true;
@@ -297,20 +301,41 @@
             // 
             // btnLimpiar
             // 
-            this.btnLimpiar.Location = new System.Drawing.Point(447, 396);
+            this.btnLimpiar.Location = new System.Drawing.Point(951, 587);
             this.btnLimpiar.Name = "btnLimpiar";
-            this.btnLimpiar.Size = new System.Drawing.Size(115, 76);
+            this.btnLimpiar.Size = new System.Drawing.Size(105, 44);
             this.btnLimpiar.TabIndex = 28;
             this.btnLimpiar.Text = "Limpiar";
             this.btnLimpiar.UseVisualStyleBackColor = true;
             this.btnLimpiar.Click += new System.EventHandler(this.btnLimpiar_Click);
+            // 
+            // lbxFloyd
+            // 
+            this.lbxFloyd.FormattingEnabled = true;
+            this.lbxFloyd.HorizontalScrollbar = true;
+            this.lbxFloyd.ItemHeight = 16;
+            this.lbxFloyd.Location = new System.Drawing.Point(788, 369);
+            this.lbxFloyd.Name = "lbxFloyd";
+            this.lbxFloyd.Size = new System.Drawing.Size(382, 212);
+            this.lbxFloyd.TabIndex = 29;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(932, 350);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(113, 16);
+            this.label5.TabIndex = 30;
+            this.label5.Text = "Resultados Floyd";
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.LightGray;
-            this.ClientSize = new System.Drawing.Size(1206, 631);
+            this.ClientSize = new System.Drawing.Size(1206, 652);
+            this.Controls.Add(this.label5);
+            this.Controls.Add(this.lbxFloyd);
             this.Controls.Add(this.btnLimpiar);
             this.Controls.Add(this.btnSalir);
             this.Controls.Add(this.label4);
@@ -373,6 +398,8 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Button btnSalir;
         private System.Windows.Forms.Button btnLimpiar;
+        private System.Windows.Forms.ListBox lbxFloyd;
+        private System.Windows.Forms.Label label5;
     }
 }
 

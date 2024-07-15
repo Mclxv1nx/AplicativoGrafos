@@ -133,7 +133,7 @@ namespace AplicativoGrafos
                 return;
             }
 
-            var distancias = dijkstra.GDijkstra(nodoInicio);
+            var (distancias, predecesores) = dijkstra.GDijkstra(nodoInicio);
 
             this.lbxDijsktra.Items.Clear();
             this.lbxDijsktra.Items.Add($"Caminos más cortos desde el nodo {nodoInicio}:");
@@ -146,10 +146,28 @@ namespace AplicativoGrafos
                 }
                 else
                 {
-                    this.lbxDijsktra.Items.Add($"Distancia desde {nodoInicio} a {distancia.Key}: {distancia.Value}");
+                    string camino = ReconstruirCamino(predecesores, nodoInicio, distancia.Key);
+                    this.lbxDijsktra.Items.Add($"Distancia desde {nodoInicio} a {distancia.Key}: {distancia.Value} ({camino})");
                 }
             }
         }
+
+        private string ReconstruirCamino(Dictionary<string, string> predecesores, string inicio, string fin)
+        {
+            Stack<string> camino = new Stack<string>();
+            string actual = fin;
+
+            while (actual != inicio)
+            {
+                camino.Push(actual);
+                actual = predecesores[actual];
+            }
+
+            camino.Push(inicio);
+
+            return string.Join(" ---> ", camino);
+        }
+
         private void btnSalir_Click(object sender, EventArgs e)
         {
             this.Close();
@@ -164,10 +182,12 @@ namespace AplicativoGrafos
             this.lbxRecorridos.Items.Clear();
             this.lbxRespuestas.Items.Clear();
             this.lbxPonderaciones.Items.Clear();
+            this.lbxFloyd.Items.Clear();
             this.nupArista.Value = 1;
             this.txtNodo1.Text = "";
             this.txtNodo2.Text = "";
             this.txtNodoInicio.Text = "";
+            
             GC.Collect();
         }
     }
