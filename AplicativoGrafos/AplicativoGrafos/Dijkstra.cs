@@ -103,7 +103,7 @@ namespace AplicativoGrafos
         /// </summary>
         /// <param name="inicioId">ID del nodo de inicio</param>
         /// <returns>Diccionario con las distancias mas cortas desde el nodo de inicio a cada nodo</returns>
-        public Dictionary<string, int> Dijkstra(string inicioId)
+        public Dictionary<string, int> GDijkstra(string inicioId)
         {
             // Diccionario para almacenar las distancias mas cortas desde el nodo de inicio a cada nodo
             var distancias = new Dictionary<string, int>();

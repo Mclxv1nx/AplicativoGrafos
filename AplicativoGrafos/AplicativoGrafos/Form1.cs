@@ -134,7 +134,7 @@ namespace AplicativoGrafos
             }
 
             // Ejecutar el algoritmo de Dijkstra
-            var distancias = dijkstra.Dijkstra(nodoInicio);
+            var distancias = dijkstra.GDijkstra(nodoInicio);
 
             // Mostrar los resultados en lbxDijkstra
             this.lbxDijsktra.Items.Clear();
