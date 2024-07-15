@@ -54,16 +54,16 @@ namespace AplicativoGrafos
         /// <param name="peso">Peso de la arista</param>
         public AristaD(NodoD destino, int peso)
         {
-            // Asigna el nodo de destino pasado como parametro a la propiedad Destino
+            // Asigna el nodo de destino pasado como par metro a la propiedad Destino
             Destino = destino;
 
-            // Asigna el peso pasado como parametro a la propiedad Peso
+            // Asigna el peso pasado como par metro a la propiedad Peso
             Peso = peso;
         }
     }
 
     /// <summary>
-    /// Implementa el algoritmo de Dijkstra para encontrar las distancias mas cortas desde un nodo de inicio a todos los demas nodos en un grafo.
+    /// Implementa el algoritmo de Dijkstra para encontrar las distancias m s cortas desde un nodo de inicio a todos los dem s nodos en un grafo.
     /// </summary>
     internal class Dijkstra
     {
@@ -99,19 +99,19 @@ namespace AplicativoGrafos
         }
 
         /// <summary>
-        /// Aplica el algoritmo de Dijkstra para calcular las distancias mas cortas desde un nodo de inicio a todos los demas nodos.
+        /// Aplica el algoritmo de Dijkstra para calcular las distancias m s cortas desde un nodo de inicio a todos los dem s nodos.
         /// </summary>
         /// <param name="inicioId">ID del nodo de inicio</param>
-        /// <returns>Diccionario con las distancias mas cortas desde el nodo de inicio a cada nodo</returns>
-        public Dictionary<string, int> Dijkstra(string inicioId)
+        /// <returns>Diccionario con las distancias m s cortas desde el nodo de inicio a cada nodo</returns>
+        public Dictionary<string, int> GDijkstra(string inicioId)
         {
-            // Diccionario para almacenar las distancias mas cortas desde el nodo de inicio a cada nodo
+            // Diccionario para almacenar las distancias m s cortas desde el nodo de inicio a cada nodo
             var distancias = new Dictionary<string, int>();
 
-            // Diccionario para almacenar el nodo predecesor de cada nodo en el camino mas corto
+            // Diccionario para almacenar el nodo predecesor de cada nodo en el camino m s corto
             var nodoPredecesor = new Dictionary<string, string>();
 
-            // Conjunto para almacenar los nodos que aun no han sido visitados
+            // Conjunto para almacenar los nodos que a n no han sido visitados
             var nodosSinVisitar = new HashSet<string>();
 
             // Inicializa las distancias a infinito y el conjunto de nodos sin visitar
@@ -143,7 +143,7 @@ namespace AplicativoGrafos
                     }
                 }
 
-                // Marca el nodo actual como visitado, eliminandolo del conjunto de nodos sin visitar
+                // Marca el nodo actual como visitado, elimin ndolo del conjunto de nodos sin visitar
                 nodosSinVisitar.Remove(nodoActual);
 
                 // Actualiza las distancias a los nodos vecinos
@@ -164,16 +164,16 @@ namespace AplicativoGrafos
                 }
             }
 
-            // Retorna el diccionario de distancias mas cortas desde el nodo de inicio a cada nodo
+            // Retorna el diccionario de distancias m s cortas desde el nodo de inicio a cada nodo
             return distancias;
         }
     }
 
     /// <summary>
-    /// Esta clase contiene el metodo Main, el cual es el punto de entrada del programa.
-    /// En este metodo se crea un grafo, se agregan nodos y aristas, y se ejecuta el algoritmo de Dijkstra.
+    /// Esta clase contiene el m todo Main, el cual es el punto de entrada del programa.
+    /// En este m todo se crea un grafo, se agregan nodos y aristas, y se ejecuta el algoritmo de Dijkstra.
     /// </summary>
-    class ProgramDjk
+    /*class ProgramDjk
     {
         static void Main(string[] args)
         {
@@ -192,19 +192,21 @@ namespace AplicativoGrafos
             // Agrega aristas entre los nodos
             grafo.AgregarArista("v1", "v2", 2);
             grafo.AgregarArista("v1", "v4", 1);
-            grafo.AgregarArista("v2", "v4", 3);
+            grafo.AgregarArista("v1", "v3", 4);
             grafo.AgregarArista("v2", "v5", 10);
-            grafo.AgregarArista("v3", "v1", 4);
+            grafo.AgregarArista("v2", "v4", 3);
+            grafo.AgregarArista("v3", "v4", 2);
             grafo.AgregarArista("v3", "v6", 5);
-            grafo.AgregarArista("v4", "v3", 2);
             grafo.AgregarArista("v4", "v5", 2);
             grafo.AgregarArista("v4", "v6", 8);
             grafo.AgregarArista("v4", "v7", 4);
-            grafo.AgregarArista("v5", "v7", 6);
-            grafo.AgregarArista("v7", "v6", 1);
+            grafo.AgregarArista("v6", "v7", 1);
+            grafo.AgregarArista("v7", "v5", 6);
 
-            // Calcula las distancias mas cortas desde el nodo "v1" a todos los demas nodos
-            var distancias = grafo.Dijkstra("v1");
+            // Calcula las distancias m s cortas desde el nodo "v1" a todos los demás nodos
+
+
+            var distancias = grafo.GDijkstra("v1");
 
             // Imprime las distancias calculadas
             foreach (var distancia in distancias)
@@ -212,6 +214,5 @@ namespace AplicativoGrafos
                 Console.WriteLine($"Distancia desde v1 a {distancia.Key}: {distancia.Value}");
             }
         }
-    }
+    }*/
 }
-```
