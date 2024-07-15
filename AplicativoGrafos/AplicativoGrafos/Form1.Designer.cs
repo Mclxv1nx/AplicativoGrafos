@@ -47,12 +47,17 @@
             this.lbxRespuestas = new System.Windows.Forms.ListBox();
             this.lbxPonderaciones = new System.Windows.Forms.ListBox();
             this.lbxRecorridos = new System.Windows.Forms.ListBox();
+            this.lbxDijsktra = new System.Windows.Forms.ListBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.txtNodoInicio = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.nupArista)).BeginInit();
             this.SuspendLayout();
             // 
             // btnFloyd
             // 
-            this.btnFloyd.Location = new System.Drawing.Point(176, 301);
+            this.btnFloyd.Location = new System.Drawing.Point(668, 12);
             this.btnFloyd.Name = "btnFloyd";
             this.btnFloyd.Size = new System.Drawing.Size(105, 59);
             this.btnFloyd.TabIndex = 0;
@@ -62,12 +67,13 @@
             // 
             // btnDijkstra
             // 
-            this.btnDijkstra.Location = new System.Drawing.Point(43, 301);
+            this.btnDijkstra.Location = new System.Drawing.Point(145, 279);
             this.btnDijkstra.Name = "btnDijkstra";
             this.btnDijkstra.Size = new System.Drawing.Size(105, 59);
             this.btnDijkstra.TabIndex = 1;
             this.btnDijkstra.Text = "Dijkstra";
             this.btnDijkstra.UseVisualStyleBackColor = true;
+            this.btnDijkstra.Click += new System.EventHandler(this.btnDijkstra_Click);
             // 
             // label1
             // 
@@ -190,7 +196,7 @@
             // lblPond
             // 
             this.lblPond.AutoSize = true;
-            this.lblPond.Location = new System.Drawing.Point(450, 75);
+            this.lblPond.Location = new System.Drawing.Point(500, 100);
             this.lblPond.Name = "lblPond";
             this.lblPond.Size = new System.Drawing.Size(124, 16);
             this.lblPond.TabIndex = 17;
@@ -199,7 +205,7 @@
             // lblReco
             // 
             this.lblReco.AutoSize = true;
-            this.lblReco.Location = new System.Drawing.Point(884, 75);
+            this.lblReco.Location = new System.Drawing.Point(948, 100);
             this.lblReco.Name = "lblReco";
             this.lblReco.Size = new System.Drawing.Size(97, 16);
             this.lblReco.TabIndex = 18;
@@ -209,7 +215,7 @@
             // 
             this.lbxRespuestas.FormattingEnabled = true;
             this.lbxRespuestas.ItemHeight = 16;
-            this.lbxRespuestas.Location = new System.Drawing.Point(542, 424);
+            this.lbxRespuestas.Location = new System.Drawing.Point(623, 427);
             this.lbxRespuestas.Name = "lbxRespuestas";
             this.lbxRespuestas.Size = new System.Drawing.Size(352, 148);
             this.lbxRespuestas.TabIndex = 19;
@@ -217,27 +223,77 @@
             // lbxPonderaciones
             // 
             this.lbxPonderaciones.FormattingEnabled = true;
+            this.lbxPonderaciones.HorizontalScrollbar = true;
             this.lbxPonderaciones.ItemHeight = 16;
-            this.lbxPonderaciones.Location = new System.Drawing.Point(388, 94);
+            this.lbxPonderaciones.Location = new System.Drawing.Point(367, 119);
             this.lbxPonderaciones.Name = "lbxPonderaciones";
-            this.lbxPonderaciones.Size = new System.Drawing.Size(352, 148);
+            this.lbxPonderaciones.Size = new System.Drawing.Size(415, 228);
             this.lbxPonderaciones.TabIndex = 20;
             // 
             // lbxRecorridos
             // 
             this.lbxRecorridos.FormattingEnabled = true;
+            this.lbxRecorridos.HorizontalScrollbar = true;
             this.lbxRecorridos.ItemHeight = 16;
-            this.lbxRecorridos.Location = new System.Drawing.Point(771, 94);
+            this.lbxRecorridos.Location = new System.Drawing.Point(788, 119);
             this.lbxRecorridos.Name = "lbxRecorridos";
-            this.lbxRecorridos.Size = new System.Drawing.Size(352, 148);
+            this.lbxRecorridos.Size = new System.Drawing.Size(382, 228);
             this.lbxRecorridos.TabIndex = 21;
+            // 
+            // lbxDijsktra
+            // 
+            this.lbxDijsktra.FormattingEnabled = true;
+            this.lbxDijsktra.ItemHeight = 16;
+            this.lbxDijsktra.Location = new System.Drawing.Point(20, 427);
+            this.lbxDijsktra.Name = "lbxDijsktra";
+            this.lbxDijsktra.Size = new System.Drawing.Size(352, 148);
+            this.lbxDijsktra.TabIndex = 22;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(120, 396);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(124, 16);
+            this.label2.TabIndex = 23;
+            this.label2.Text = "Resultados Dijkstra";
+            // 
+            // txtNodoInicio
+            // 
+            this.txtNodoInicio.Location = new System.Drawing.Point(250, 357);
+            this.txtNodoInicio.Name = "txtNodoInicio";
+            this.txtNodoInicio.Size = new System.Drawing.Size(100, 22);
+            this.txtNodoInicio.TabIndex = 24;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(29, 360);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(204, 16);
+            this.label3.TabIndex = 25;
+            this.label3.Text = "Ingrese el Nodo Buscar Caminos";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(743, 396);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(81, 16);
+            this.label4.TabIndex = 26;
+            this.label4.Text = "Conexiones ";
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.LightGray;
-            this.ClientSize = new System.Drawing.Size(1206, 594);
+            this.ClientSize = new System.Drawing.Size(1206, 631);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.txtNodoInicio);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.lbxDijsktra);
             this.Controls.Add(this.lbxRecorridos);
             this.Controls.Add(this.lbxPonderaciones);
             this.Controls.Add(this.lbxRespuestas);
@@ -286,6 +342,11 @@
         private System.Windows.Forms.ListBox lbxRespuestas;
         private System.Windows.Forms.ListBox lbxPonderaciones;
         private System.Windows.Forms.ListBox lbxRecorridos;
+        private System.Windows.Forms.ListBox lbxDijsktra;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.TextBox txtNodoInicio;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label4;
     }
 }
 

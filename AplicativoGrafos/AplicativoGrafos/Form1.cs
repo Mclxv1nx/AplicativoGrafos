@@ -9,10 +9,13 @@ namespace AplicativoGrafos
     {
         int contador = 0;  // contador de nodos
         List<NodoF> nodosExistentes = new List<NodoF>(); // Lista para mantener los nodos existentes
+        GFloyd floyd;
+        Dijkstra dijkstra;
 
         public Form1()
         {
             InitializeComponent();
+            dijkstra = new Dijkstra();
         }
 
         private void btnConectar_Click(object sender, EventArgs e) // Es el botón añadir
@@ -49,6 +52,7 @@ namespace AplicativoGrafos
             {
                 nodo1 = new NodoF(nodoNombre1);
                 nodosExistentes.Add(nodo1);
+                dijkstra.AgregarNodo(nodoNombre1);
                 contador++;
             }
 
@@ -56,12 +60,14 @@ namespace AplicativoGrafos
             {
                 nodo2 = new NodoF(nodoNombre2);
                 nodosExistentes.Add(nodo2);
+                dijkstra.AgregarNodo(nodoNombre2);
                 contador++;
             }
 
             // Crear y agregar la arista
             AristaF aristaConexion = new AristaF(peso, nodo2);
             nodo1.Aristas.Add(aristaConexion);
+            dijkstra.AgregarArista(nodoNombre1, nodoNombre2, peso);
 
             // Actualizar la interfaz de usuario
             this.lbxRespuestas.Items.Clear(); // Es necesario primero siempre limpiar la lista.
@@ -94,7 +100,7 @@ namespace AplicativoGrafos
                 return;
             }
 
-            GFloyd floyd = new GFloyd(nodosExistentes.ToArray());
+            floyd = new GFloyd(nodosExistentes.ToArray());
             floyd.BuscarCaminos();
 
             this.lbxRecorridos.Items.Clear();
@@ -109,6 +115,35 @@ namespace AplicativoGrafos
         private string[] ConvertirMatrizAStringArray(string matriz)
         {
             return matriz.Split(new[] { "\n" }, StringSplitOptions.RemoveEmptyEntries);
+        }
+
+        private void btnDijkstra_Click(object sender, EventArgs e)
+        {
+            string nodoInicio = this.txtNodoInicio.Text.Trim();
+
+            if (string.IsNullOrWhiteSpace(nodoInicio))
+            {
+                MessageBox.Show("Por favor, ingrese un nodo de inicio válido.", "Entrada inválida", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            if (!nodosExistentes.Any(n => n.Nombre.Equals(nodoInicio, StringComparison.OrdinalIgnoreCase)))
+            {
+                MessageBox.Show("El nodo de inicio no existe en el grafo.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            // Ejecutar el algoritmo de Dijkstra
+            var distancias = dijkstra.GDijkstra(nodoInicio);
+
+            // Mostrar los resultados en lbxDijkstra
+            this.lbxDijsktra.Items.Clear();
+            this.lbxDijsktra.Items.Add($"Caminos más cortos desde el nodo {nodoInicio}:");
+
+            foreach (var distancia in distancias)
+            {
+                this.lbxDijsktra.Items.Add($"Distancia desde {nodoInicio} a {distancia.Key}: {distancia.Value}");
+            }
         }
     }
 }
