@@ -162,6 +162,8 @@ namespace AplicativoGrafos
             int primerNodo = IndexOf(nodoOrigen);
             int SegundoNodo = IndexOf(nodoBusqueda);
 
+            if (primerNodo == -1) return "Nodo Origen " + nodoOrigen + " no existe en el grafo";
+            if (SegundoNodo == -1) return "Nodo Búsqueda " + nodoBusqueda + " no existe en el grafo";
             if (primerNodo == SegundoNodo) return "El camino es a si mismo";
 
             int pesoTotal = pesos[primerNodo, SegundoNodo];
@@ -172,9 +174,10 @@ namespace AplicativoGrafos
             while (aux != nodos[temp])
             {
                 temp = IndexOf(aux.Nombre);
-                aux = nodos[temp];
+                aux = recorridos[primerNodo, temp];
                 nodoPath.Add(aux.Nombre);
                 pesoTotal += Pesos[primerNodo, temp];
+                temp = IndexOf(aux.Nombre);
             }
 
             nodoPath.Add(nodoBusqueda);
@@ -199,9 +202,10 @@ namespace AplicativoGrafos
         private int IndexOf(string nombreNodo)
         {
             int index = 0;
-            foreach (NodoF nodo in nodos)
+            for (int i = 0; i <= nodos.Length; i++)
             {
-                if (nodo.Nombre == nombreNodo) break;
+                if (i > nodos.Length - 1) return -1;
+                if (nodos[i].Nombre == nombreNodo) break;
                 index++;
             }
 

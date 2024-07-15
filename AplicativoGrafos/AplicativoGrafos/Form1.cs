@@ -22,7 +22,7 @@ namespace AplicativoGrafos
             //con el fin de programar mas rapido
 
             //Primer grafo
-            NodoF A = new NodoF("A");
+            /*NodoF A = new NodoF("A");
             NodoF B = new NodoF("B");
             NodoF D = new NodoF("D");
             NodoF C = new NodoF("C");
@@ -49,7 +49,7 @@ namespace AplicativoGrafos
             
             //Ejecuto el algoritmo
             floyd.BuscarCaminos();
-            Console.WriteLine(floyd.DarCaminos(A.Nombre, D.Nombre));
+            Console.WriteLine(floyd.DarCaminos(D.Nombre, C.Nombre));*/
             //Segundo grafo
             /*NodoF v1 = new NodoF("V1");
             NodoF v2 = new NodoF("V2");
@@ -89,7 +89,8 @@ namespace AplicativoGrafos
             {
                 v1, v2, v3, v4, v5, v6, v7
             });
-            floyd.BuscarCaminos();*/
+            floyd.BuscarCaminos();
+            Console.WriteLine(floyd.DarCaminos(v1.Nombre, v5.Nombre));*/
 
             dijkstra = new Dijkstra();
         }
