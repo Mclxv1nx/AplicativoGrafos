@@ -1,4 +1,5 @@
 ﻿using System;
+using System.CodeDom.Compiler;
 using System.Collections.Generic;
 using System.Runtime.Serialization;
 
@@ -52,7 +53,9 @@ namespace AplicativoGrafos
             }
         }
 
-
+        /// <summary>
+        /// Ejecución del Algoritmo Floyd.
+        /// </summary>
         public void BuscarCaminos()
         {
             //--Comentar esto cuando ya no sea necesario.--
@@ -104,6 +107,9 @@ namespace AplicativoGrafos
             }
         }
 
+        /// <summary>
+        /// Es el método que permite evaluar cada nodo y modificar las matrices. 
+        /// </summary>
         private void EvaluarNodos()
         {
             /* 
@@ -149,6 +155,57 @@ namespace AplicativoGrafos
                     }
                 }
             }
+        }
+
+        public string DarCaminos(string nodoOrigen, string nodoBusqueda)
+        {
+            int primerNodo = IndexOf(nodoOrigen);
+            int SegundoNodo = IndexOf(nodoBusqueda);
+
+            if (primerNodo == SegundoNodo) return "El camino es a si mismo";
+
+            int pesoTotal = pesos[primerNodo, SegundoNodo];
+            NodoF aux = recorridos[primerNodo, SegundoNodo];
+            List<string> nodoPath = new List<string>() { nodoOrigen };
+            int temp = SegundoNodo;
+
+            while (aux != nodos[temp])
+            {
+                temp = IndexOf(aux.Nombre);
+                aux = nodos[temp];
+                nodoPath.Add(aux.Nombre);
+                pesoTotal += Pesos[primerNodo, temp];
+            }
+
+            nodoPath.Add(nodoBusqueda);
+
+            string caminos = "";
+
+            for (int i = 0; i < nodoPath.Count; i++)
+            {
+                caminos += nodoPath[i] + ", ";
+            }
+
+            return "Caminos: " + caminos.Substring(0, caminos.Length - 2) + ".\n" +
+                   "Peso total: " + pesoTotal;
+        }
+
+        /// <summary>
+        /// Por alguna razón no hay IndexOf en los arreglos. Asi que esta
+        /// función se encarga de eso. 
+        /// </summary>
+        /// <param name="nombreNodo">Usamos el nombre para la busqueda del nodo</param>
+        /// <returns></returns>
+        private int IndexOf(string nombreNodo)
+        {
+            int index = 0;
+            foreach (NodoF nodo in nodos)
+            {
+                if (nodo.Nombre == nombreNodo) break;
+                index++;
+            }
+
+            return index;
         }
 
         /// <summary>
