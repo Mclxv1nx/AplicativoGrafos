@@ -22,7 +22,7 @@ namespace AplicativoGrafos
             //con el fin de programar mas rapido
 
             //Primer grafo
-            /*NodoF A = new NodoF("A");
+            NodoF A = new NodoF("A");
             NodoF B = new NodoF("B");
             NodoF D = new NodoF("D");
             NodoF C = new NodoF("C");
@@ -49,7 +49,7 @@ namespace AplicativoGrafos
             
             //Ejecuto el algoritmo
             floyd.BuscarCaminos();
-            Console.WriteLine(floyd.DarCaminos(A.Nombre, D.Nombre));*/
+            Console.WriteLine(floyd.DarTodoslosCaminos());
             //Segundo grafo 
             /*NodoF v1 = new NodoF("V1");
             NodoF v2 = new NodoF("V2");
@@ -65,8 +65,8 @@ namespace AplicativoGrafos
             AristaF v4_2 = new AristaF(8, v6);
             AristaF v4_3 = new AristaF(4, v7);
             AristaF v4_4 = new AristaF(2, v5);
-            AristaF v2_1 = new AristaF(1, v4);
-            AristaF v2_2 = new AristaF(3, v5);
+            AristaF v2_1 = new AristaF(3, v4);
+            AristaF v2_2 = new AristaF(10, v5);
             AristaF v3_1 = new AristaF(4, v1);
             AristaF v3_2 = new AristaF(5, v6);
             AristaF v5_1 = new AristaF(6, v7);
@@ -90,7 +90,7 @@ namespace AplicativoGrafos
                 v1, v2, v3, v4, v5, v6, v7
             });
             floyd.BuscarCaminos();
-            Console.WriteLine(floyd.DarCaminos(v1.Nombre, v6.Nombre));*/
+            Console.WriteLine(floyd.DarTodoslosCaminos());*/
 
             dijkstra = new Dijkstra();
         }

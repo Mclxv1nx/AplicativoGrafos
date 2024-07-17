@@ -1,6 +1,6 @@
 ﻿using System;
-using System.CodeDom.Compiler;
 using System.Collections.Generic;
+using System.Linq;
 using System.Runtime.Serialization;
 
 namespace AplicativoGrafos
@@ -83,6 +83,12 @@ namespace AplicativoGrafos
             //Primero se analiza cada nodo. 
             for (int i = 0; i < nodos.Length; i++)
             {
+                //Si el nodo no tiene aristas, toda la fila en matriz de pesos se hace infinito. 
+                if (nodos[i].Aristas.Count == 0)
+                {
+                    for (int j = 0; j < nodos.Length; j++) pesos[i, j] = infinito;
+                    continue;
+                }
                 //De acuerdo a ese nodo se analizará cada arista
                 for (int j = 0; j < nodos[i].Aristas.Count; j++)
                 {
@@ -95,8 +101,9 @@ namespace AplicativoGrafos
                         if (pesos[i, k] == -1) continue;
                         //Luego, como es la primera busqueda sabemos que 
                         //por defecto todo es 0, asi que los que son 0 se pone infinito
-                        else if (nodos[k] != nodos[i].Aristas[j].Nodo
-                            && pesos[i, k] == 0) pesos[i, k] = infinito;
+                        else if (nodos[k] != nodos[i].Aristas[j].Nodo 
+                            && pesos[i, k] == 0)
+                            pesos[i, k] = infinito;
                         //Solo por esta primera ocasión se reemplaza cualquier valor
                         //a cambio del peso correspondiente a esa arista.
                         //En el caso de que coincida con la que buscamos, claro. 
@@ -119,36 +126,36 @@ namespace AplicativoGrafos
              * Entre otras palabras. El Evaluador es el nodo que evalua al Evaluando,
              * Esto mediante los criterios que se verán más adelante. 
              */
-            
+
             //Primero vamos a buscar el nodo Evaluador
             for (int i = 0; i < nodos.Length; i++)
             {
-                for (int j = 0; j < nodos.Length; j++)
+                for (int fl = 0; fl < nodos.Length; fl++)
                 {
                     ///Descartamos todas las posibilidades en que no se deba analizar
                     //Si el Evaluador coincide consigo mismo en la matriz se omite el analisis. 
-                    if (i == j) continue;
+                    if (i == fl) continue;
                     //Si el Evaluador es infinito se omite el analisis.
-                    else if (pesos[i, j] == infinito) continue;
+                    else if (pesos[fl, i] == infinito) continue;
                     else
                     {
                         //Recién ahora conseguimos el Evaluador, por lo tanto guardamos en memoria al Evaluador.
-                        int pesoSuma = pesos[i, j];
-                        for (int k = 0; k < nodos.Length; k++)
+                        int pesoSuma = pesos[fl, i];
+                        for (int cl = 0; cl < nodos.Length; cl++)
                         {
                             ///Ahora procedemos a buscar al Evaluando
-                            //Si estamos en la misma fila que el Evaluador, omitimos el analisis.
-                            if (k == i) continue;
+                            //Si estamos en la misma columna que el Evaluador, omitimos el analisis.
+                            if (cl == i) continue;
                             //Si el Evaluando es infinito se omite el analisis
-                            else if (pesos[k, i] == infinito) continue;
+                            else if (pesos[i, cl] == infinito) continue;
                             //Si donde se guardará ya es -1, se omite el analisis.
-                            else if (pesos[k, j] == -1) continue;
+                            else if (pesos[fl, cl] == -1) continue;
                             //Si la suma de las aristas del evaluador y evaluando dan un resultado inferior
                             //Al que ya se tiene en la matriz se guardará la nueva suma. 
-                            else if (pesoSuma + pesos[k, i] < pesos[k, j])
+                            else if (pesoSuma + pesos[i, cl] < pesos[fl, cl])
                             {
-                                pesos[k, j] = pesoSuma + pesos[k, i];   //Se guarda el resultado
-                                recorridos[k, j] = nodos[i];            //Se guarda el nodo Evaluador en la nueva posición.
+                                pesos[fl, cl] = pesoSuma + pesos[i, cl];   //Se guarda el resultado
+                                recorridos[fl, cl] = nodos[i];             //Se guarda el nodo Evaluador en la nueva posición.
                             }
                             //Ahora solo se repite el ciclo. 
                         }
@@ -166,24 +173,60 @@ namespace AplicativoGrafos
         /// <returns></returns>
         public string DarCaminos(string nodoOrigen, string nodoBusqueda)
         {
+            //Para completa exactitud se usan 2 algoritmos de busqueda
+            string caminos = "";
+            try
+            {
+                //Si falla uno, inmediatamente se guarda su mensaje y se intenta con el segundo algoritmo
+                return ComprobarCamino(
+                    PrimerAlgoritmo(nodoOrigen, nodoBusqueda), 
+                    nodos[IndexOf(nodoOrigen)], 
+                    nodos[IndexOf(nodoBusqueda)]);
+            }
+            catch (ErroresFloyd mensaje) { caminos = mensaje.ToString(); }
+            
+            try
+            {
+                //Si este falla ya solo quedaría que mandar el mensaje de error
+                return ComprobarCamino(SegundoAlgoritmo(nodoOrigen, nodoBusqueda), 
+                    nodos[IndexOf(nodoOrigen)], 
+                    nodos[IndexOf(nodoBusqueda)]);
+            }
+            catch (ErroresFloyd mensaje) { caminos = mensaje.ToString(); }
+
+            return caminos;
+        }
+
+        /// <summary>
+        /// El primer algoritmo de busqueda de camino busca por la misma fila del nodo de Origen
+        /// </summary>
+        /// <param name="nodoOrigen">Es el nodo en el que comienza la busqueda</param>
+        /// <param name="nodoBusqueda">Es el nudo que se busca</param>
+        /// <returns>Una lista con los posibles caminos</returns>
+        /// <exception cref="ErroresFloyd">En caso de error se enviará el mensaje</exception>
+        private List<NodoF> PrimerAlgoritmo(string nodoOrigen, string nodoBusqueda)
+        {
             //Primer recojo los indices de ambos nodos
-            int primerNodo = IndexOf(nodoOrigen);
-            int SegundoNodo = IndexOf(nodoBusqueda);
+            int nodoBuscar = IndexOf(nodoOrigen);
+            int nodoBuscando = IndexOf(nodoBusqueda);
 
             //Ahora descarto las posibilidades. 
             //En el caso de que algún nodo no existiera dentro del grafo regresara un mensaje
-            if (primerNodo == -1) return "Nodo Origen " + nodoOrigen + " no existe en el grafo";
-            if (SegundoNodo == -1) return "Nodo Búsqueda " + nodoBusqueda + " no existe en el grafo";
+            if (nodoBuscar == -1) throw new ErroresFloyd("Nodo Origen " + nodoOrigen + " no existe en el grafo");
+            if (nodoBuscando == -1) throw new ErroresFloyd("Nodo Búsqueda " + nodoBusqueda + " no existe en el grafo");
             //En el caso de que sea el mismo nodo que se busca también se descarta. 
-            if (primerNodo == SegundoNodo) return "El camino es a si mismo";
+            if (nodoBuscar == nodoBuscando) throw new ErroresFloyd("El camino es a si mismo");
+            //En el caso de que su correspondiente en la matriz sea infinito significa que no tiene conexiones. 
+            if (pesos[nodoBuscar, nodoBuscando] == infinito) 
+                throw new ErroresFloyd($"El nodo {nodoOrigen} no tiene conexiones hacia {nodoBusqueda}");
 
             //Creo un Nodo aux para el bucle siguiente
-            NodoF aux = recorridos[primerNodo, SegundoNodo];
+            NodoF aux = recorridos[nodoBuscar, nodoBuscando];
             //Empiezo creando una pila con el valor del nodoOrigen
-            Stack<string> nodoPath = new Stack<string>();
-            nodoPath.Push(nodoBusqueda);
+            Stack<NodoF> nodoPath = new Stack<NodoF>();
+            nodoPath.Push(nodos[nodoBuscando]);
             //Creo un indice temporal para el bucle siguiente
-            int temp = SegundoNodo;
+            int temp = nodoBuscando;
 
             /*
              * En el bucle ahora lo que hace es que va a ir de posición
@@ -191,21 +234,130 @@ namespace AplicativoGrafos
              */
             while (aux != nodos[temp])
             {
-                nodoPath.Push(aux.Nombre); //Primero apilamos el nombre de aux
+                nodoPath.Push(aux); //Primero apilamos el nombre de aux
                 temp = IndexOf(aux.Nombre); //Ahora cambiamos el aux por medio del nuevo indice
-                aux = recorridos[primerNodo, temp];
+                aux = recorridos[nodoBuscar, temp]; //Buscamos en la misma fila el siguiente nodo
             }
 
             //Finalmente ingresamos el nodo Origen dentro de la Pila
-            nodoPath.Push(nodoOrigen);
+            nodoPath.Push(nodos[nodoBuscar]);
 
             //Ahora solo creamos una string para devolver el mensaje. 
+            List<NodoF> caminos = new List<NodoF>();
+
+            //Ahora solo queda convertir esto a una lista para ser devuelto
+            while (nodoPath.Count > 0) caminos.Add(nodoPath.Pop());
+
+            return caminos;
+        }
+
+        /// <summary>
+        /// El segundo algoritmo y mas preciso a la vez, busca intercalando entre filas pero en
+        /// la misma columna que se encuentra el nodo de Busqueda
+        /// </summary>
+        /// <param name="nodoOrigen">Es el nodo con el que se comienza la busqueda</param>
+        /// <param name="nodoBusqueda">Es el nodo que se busca</param>
+        /// <returns>Una lista con los posibles caminos</returns>
+        /// <exception cref="ErroresFloyd">Un mensaje del posible fallo</exception>
+        private List<NodoF> SegundoAlgoritmo(string nodoOrigen, string nodoBusqueda)
+        {
+            //Primer recojo los indices de ambos nodos
+            int nodoBuscar = IndexOf(nodoOrigen);
+            int nodoBuscando = IndexOf(nodoBusqueda);
+
+            //Ahora descarto las posibilidades. 
+            //En el caso de que algún nodo no existiera dentro del grafo regresara un mensaje
+            if (nodoBuscar == -1) throw new ErroresFloyd("Nodo Origen " + nodoOrigen + " no existe en el grafo");
+            if (nodoBuscando == -1) throw new ErroresFloyd("Nodo Búsqueda " + nodoBusqueda + " no existe en el grafo");
+            //En el caso de que sea el mismo nodo que se busca también se descarta. 
+            if (nodoBuscar == nodoBuscando) throw new ErroresFloyd("El camino es a si mismo");
+            //En caso de que su correspondiente en la matriz de pesos es infinito significa que no tiene conexiones. 
+            if (pesos[nodoBuscar, nodoBuscando] == infinito) throw new ErroresFloyd($"El nodo {nodoOrigen} no tiene conexiones hacia {nodoBusqueda}");
+
+            //Creo un Nodo aux para el bucle siguiente
+            NodoF aux = recorridos[nodoBuscar, nodoBuscando];
+            //Empiezo creando una cola con el valor del nodoOrigen
+            Queue<NodoF> nodoPath = new Queue<NodoF>();
+            nodoPath.Enqueue(nodos[nodoBuscar]);
+            //Creo un indice temporal para el bucle siguiente
+            int temp = nodoBuscando;
+
+            /*
+             * En el bucle ahora lo que hace es que va a ir de posición
+             * en posición dentro de la matriz de recorridos. 
+             */
+            while (aux != nodos[temp])
+            {
+                nodoPath.Enqueue(aux); //Primero acolamos el nombre de aux
+                temp = IndexOf(aux.Nombre); //Ahora cambiamos el aux por medio del nuevo indice
+                aux = recorridos[temp, nodoBuscando]; //a diferencia del primer algoritmo, aqui buscamos por las columnas.
+            }
+
+            //En el caso de que el auxiliar no tenga de hijo al de busqueda se descarta el camino actual encontrado. 
+            if (!aux.EsNodoHijo(nodos[nodoBuscando]) && aux != nodos[nodoBuscando])
+                throw new ErroresFloyd("No hay caminos óptimos del nodo " + nodoOrigen + " al " + nodoBusqueda);
+
+            //En el caso de ser directo ingresamos el nodo Busqueda dentro de la Pila
+            if (nodoPath.Count == 1) nodoPath.Enqueue(nodos[nodoBuscando]);
+
+            //Ahora solo creamos una lista para devolver los caminos. 
+            List<NodoF> caminos = new List<NodoF>();
+
+            //Queda convertir la cola en una lista y la enviamos de regreso
+            while (nodoPath.Count > 0) caminos.Add(nodoPath.Dequeue());
+
+            return caminos;
+        }
+
+        /// <summary>
+        /// Este algoritmo comprueba que el camino dado llegue realmente al nodo de busuqeda
+        /// </summary>
+        /// <param name="caminos">La lista de caminos enviada por alguno de los algoritmos anteriores</param>
+        /// <param name="nodoOrigen">Es el nodo en el que se comienza la busqueda</param>
+        /// <param name="nodoBusqueda">Es el nodo que se busca</param>
+        /// <returns>Con un mensaje con su camino comprobado y su peso total.</returns>
+        /// <exception cref="ErroresFloyd">En caso de fallar significa que definitivamente no hay caminos</exception>
+        private string ComprobarCamino(List<NodoF> caminos, NodoF nodoOrigen, NodoF nodoBusqueda)
+        {
+            string camino = ""; 
+            NodoF aux = caminos[0];
+            int index = 0;
+
+            //Buscará entre todos los hijos y comprobará que entre ellos se encuentren
+            //los nodos que están en la lista.
+            while(aux != nodoBusqueda && index < caminos.Count - 1)
+            {
+                if (aux != null) camino += aux.Nombre + ", ";
+                aux = caminos[index].BuscarHijo(caminos[++index]);
+            }
+
+            //Si no aux no termino siendo el nodoBusqueda es bastante probable que no hay el camino
+            if (aux != nodoBusqueda) throw new ErroresFloyd($"No hay caminos optimos de {nodoOrigen.Nombre} a {nodoBusqueda.Nombre}");
+
+            //Regresamos un camino personalizado con el resultado del camino encontrado y comprobado
+            return $"{camino}{caminos.Last()}. Con peso total de: {pesos[IndexOf(nodoOrigen.Nombre), IndexOf(nodoBusqueda.Nombre)]}";
+        }
+
+        /// <summary>
+        /// Bucle que permite la busqueda de todos los caminos de todos los nodos hacia todos los nodos
+        /// </summary>
+        /// <returns>Un mensaje con todos los caminos en tipo string</returns>
+        public string DarTodoslosCaminos()
+        {
             string caminos = "";
 
-            while (nodoPath.Count > 0) caminos += nodoPath.Pop() + ", ";
+            //Intercala entre todos los nodos para buscar todos los caminos
+            foreach (NodoF primerNodo in nodos)
+            {
+                foreach (NodoF segundoNodo in nodos)
+                {
+                    string temp = $"{primerNodo} a {segundoNodo} => {DarCaminos(primerNodo.Nombre, segundoNodo.Nombre)}\n";
+                    caminos += temp;
+                }
+                caminos += "\n";
+            }
 
-            return "Caminos: " + caminos.Substring(0, caminos.Length - 2) + ".\n" +
-                   "Peso total: " + pesos[primerNodo, SegundoNodo];
+            return caminos;
         }
 
         /// <summary>
@@ -313,6 +465,40 @@ namespace AplicativoGrafos
         {
         }
 
+        /// <summary>
+        /// Comprueba que ese nodo se encuentra entre sus aristas
+        /// </summary>
+        /// <param name="hijo">Nodo con el que comprueba si es hijo del nodo</param>
+        /// <returns>Un boolean indicando si es o no el hijo</returns>
+        public bool EsNodoHijo(NodoF hijo)
+        {
+            //Solo busca de manera lineal si es o no su hijo
+            foreach (AristaF arista in aristas)
+            {
+                if (arista.Nodo == hijo) { return true; }
+            }
+            //Si termino el bucle es que en definitiva no hubo el hijo
+            return false;
+        }
+
+        /// <summary>
+        /// Busca y regresa el hijo en caso de existir
+        /// </summary>
+        /// <param name="hijo">Es el nodo que se busca</param>
+        /// <returns>Si se encontró se regresa con la dirección de memoria, de lo contrario regresará null</returns>
+        public NodoF BuscarHijo(NodoF hijo)
+        {
+            foreach (AristaF arista in aristas)
+            {
+                if (arista.Nodo == hijo) { return arista.Nodo; }
+            }
+            return null;
+        }
+
+        /// <summary>
+        /// Convierte el nodo a string
+        /// </summary>
+        /// <returns>Nombre del nodo</returns>
         public override string ToString()
         {
             return nombre;
@@ -382,6 +568,11 @@ namespace AplicativoGrafos
 
         protected ErroresFloyd(SerializationInfo info, StreamingContext context) : base(info, context)
         {
+        }
+
+        public override string ToString()
+        {
+            return Message;
         }
     }
 }
