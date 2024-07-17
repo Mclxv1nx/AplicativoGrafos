@@ -89,5 +89,18 @@ namespace AplicativoGrafos
 
             return (distancias, nodoPredecesor);
         }
+        public void EliminarNodo(string id)
+        {
+            if (!Nodos.ContainsKey(id)) return;
+
+            // Eliminar todas las aristas que apuntan al nodo a eliminar
+            foreach (var nodo in Nodos.Values)
+            {
+                nodo.Aristas.RemoveAll(arista => arista.Destino.Id == id);
+            }
+
+            // Eliminar el nodo del diccionario de nodos
+            Nodos.Remove(id);
+        }
     }
 }

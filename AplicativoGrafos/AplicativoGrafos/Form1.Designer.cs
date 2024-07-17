@@ -56,6 +56,8 @@
             this.btnLimpiar = new System.Windows.Forms.Button();
             this.lbxFloyd = new System.Windows.Forms.ListBox();
             this.label5 = new System.Windows.Forms.Label();
+            this.txtEliminar = new System.Windows.Forms.TextBox();
+            this.btnEliminar = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.nupArista)).BeginInit();
             this.SuspendLayout();
             // 
@@ -291,7 +293,7 @@
             // 
             // btnSalir
             // 
-            this.btnSalir.Location = new System.Drawing.Point(1065, 599);
+            this.btnSalir.Location = new System.Drawing.Point(250, 599);
             this.btnSalir.Name = "btnSalir";
             this.btnSalir.Size = new System.Drawing.Size(105, 44);
             this.btnSalir.TabIndex = 27;
@@ -301,7 +303,7 @@
             // 
             // btnLimpiar
             // 
-            this.btnLimpiar.Location = new System.Drawing.Point(951, 599);
+            this.btnLimpiar.Location = new System.Drawing.Point(361, 599);
             this.btnLimpiar.Name = "btnLimpiar";
             this.btnLimpiar.Size = new System.Drawing.Size(105, 44);
             this.btnLimpiar.TabIndex = 28;
@@ -328,12 +330,31 @@
             this.label5.TabIndex = 30;
             this.label5.Text = "Resultados Floyd";
             // 
+            // txtEliminar
+            // 
+            this.txtEliminar.Location = new System.Drawing.Point(25, 610);
+            this.txtEliminar.Name = "txtEliminar";
+            this.txtEliminar.Size = new System.Drawing.Size(100, 22);
+            this.txtEliminar.TabIndex = 31;
+            // 
+            // btnEliminar
+            // 
+            this.btnEliminar.Location = new System.Drawing.Point(139, 599);
+            this.btnEliminar.Name = "btnEliminar";
+            this.btnEliminar.Size = new System.Drawing.Size(105, 44);
+            this.btnEliminar.TabIndex = 32;
+            this.btnEliminar.Text = "Eliminar";
+            this.btnEliminar.UseVisualStyleBackColor = true;
+            this.btnEliminar.Click += new System.EventHandler(this.btnEliminar_Click_1);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.LightGray;
             this.ClientSize = new System.Drawing.Size(1232, 676);
+            this.Controls.Add(this.btnEliminar);
+            this.Controls.Add(this.txtEliminar);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.lbxFloyd);
             this.Controls.Add(this.btnLimpiar);
@@ -400,6 +421,8 @@
         private System.Windows.Forms.Button btnLimpiar;
         private System.Windows.Forms.ListBox lbxFloyd;
         private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.TextBox txtEliminar;
+        private System.Windows.Forms.Button btnEliminar;
     }
 }
 

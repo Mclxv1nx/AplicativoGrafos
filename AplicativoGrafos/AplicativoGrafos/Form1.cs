@@ -202,7 +202,6 @@ namespace AplicativoGrafos
         {
             this.Close();
         }
-
         private void btnLimpiar_Click(object sender, EventArgs e)
         {
             contador = 0;
@@ -220,5 +219,48 @@ namespace AplicativoGrafos
 
             GC.Collect();
         }
+
+        private void btnEliminar_Click_1(object sender, EventArgs e)
+        {
+            string nodoNombre = this.txtEliminar.Text.Trim();
+
+            if (string.IsNullOrWhiteSpace(nodoNombre))
+            {
+                MessageBox.Show("Por favor, ingrese un nombre válido para el nodo a eliminar.", "Entrada inválida", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            // Buscar el nodo a eliminar
+            NodoF nodoAEliminar = nodosExistentes.FirstOrDefault(n => n.Nombre.Equals(nodoNombre, StringComparison.OrdinalIgnoreCase));
+
+            if (nodoAEliminar == null)
+            {
+                MessageBox.Show("El nodo especificado no existe.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            // Eliminar todas las aristas que tienen como destino el nodo a eliminar
+            foreach (var nodo in nodosExistentes)
+            {
+                nodo.Aristas.RemoveAll(arista => arista.Nodo == nodoAEliminar);
+            }
+
+            // Eliminar el nodo de la lista de nodos existentes
+            nodosExistentes.Remove(nodoAEliminar);
+
+            // Actualizar la estructura en Dijkstra
+            dijkstra.EliminarNodo(nodoNombre);
+
+            // Actualizar el contador de nodos
+            contador--;
+            this.lblCont.Text = contador.ToString();
+
+            // Actualizar la interfaz de usuario
+            this.lbxRespuestas.Items.Clear();
+            this.txtEliminar.Text = "";
+
+            MostrarEstructuraGrafo();
+        }
+
     }
 }
