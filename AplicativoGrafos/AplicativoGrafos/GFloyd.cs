@@ -40,7 +40,6 @@ namespace AplicativoGrafos
         /// Será la variable con la que se comparará cumpliendo un papel representativo de Infinito. 
         /// </summary>
         public static int Infinito { get => infinito; set => infinito = value; }
-        
 
         /// <summary>
         /// Constructor de la clase Grafo correspondiente al algoritmo de Floyd.
@@ -72,7 +71,7 @@ namespace AplicativoGrafos
             Console.WriteLine(MatrizRecorridos());
             Console.WriteLine(MatrizPesos());
             CambiosMatrizRecorridos.Add(MatrizRecorridos());  //Guardado de la versión
-            CambiosMatrizPesos.Add(MatrizPesos()); 
+            CambiosMatrizPesos.Add(MatrizPesos());
 
             //Primero buscamos los que se conectan y los que no
             BuscarConexiones();
