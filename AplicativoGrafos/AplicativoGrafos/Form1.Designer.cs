@@ -200,7 +200,7 @@
             // lblPond
             // 
             this.lblPond.AutoSize = true;
-            this.lblPond.Location = new System.Drawing.Point(500, 100);
+            this.lblPond.Location = new System.Drawing.Point(515, 100);
             this.lblPond.Name = "lblPond";
             this.lblPond.Size = new System.Drawing.Size(124, 16);
             this.lblPond.TabIndex = 17;
@@ -209,7 +209,7 @@
             // lblReco
             // 
             this.lblReco.AutoSize = true;
-            this.lblReco.Location = new System.Drawing.Point(948, 100);
+            this.lblReco.Location = new System.Drawing.Point(943, 100);
             this.lblReco.Name = "lblReco";
             this.lblReco.Size = new System.Drawing.Size(97, 16);
             this.lblReco.TabIndex = 18;
@@ -220,9 +220,9 @@
             this.lbxRespuestas.FormattingEnabled = true;
             this.lbxRespuestas.HorizontalScrollbar = true;
             this.lbxRespuestas.ItemHeight = 16;
-            this.lbxRespuestas.Location = new System.Drawing.Point(378, 369);
+            this.lbxRespuestas.Location = new System.Drawing.Point(367, 369);
             this.lbxRespuestas.Name = "lbxRespuestas";
-            this.lbxRespuestas.Size = new System.Drawing.Size(404, 212);
+            this.lbxRespuestas.Size = new System.Drawing.Size(441, 212);
             this.lbxRespuestas.TabIndex = 19;
             // 
             // lbxPonderaciones
@@ -232,7 +232,7 @@
             this.lbxPonderaciones.ItemHeight = 16;
             this.lbxPonderaciones.Location = new System.Drawing.Point(367, 119);
             this.lbxPonderaciones.Name = "lbxPonderaciones";
-            this.lbxPonderaciones.Size = new System.Drawing.Size(415, 228);
+            this.lbxPonderaciones.Size = new System.Drawing.Size(441, 228);
             this.lbxPonderaciones.TabIndex = 20;
             // 
             // lbxRecorridos
@@ -240,9 +240,9 @@
             this.lbxRecorridos.FormattingEnabled = true;
             this.lbxRecorridos.HorizontalScrollbar = true;
             this.lbxRecorridos.ItemHeight = 16;
-            this.lbxRecorridos.Location = new System.Drawing.Point(788, 119);
+            this.lbxRecorridos.Location = new System.Drawing.Point(814, 119);
             this.lbxRecorridos.Name = "lbxRecorridos";
-            this.lbxRecorridos.Size = new System.Drawing.Size(382, 228);
+            this.lbxRecorridos.Size = new System.Drawing.Size(406, 228);
             this.lbxRecorridos.TabIndex = 21;
             // 
             // lbxDijsktra
@@ -250,15 +250,15 @@
             this.lbxDijsktra.FormattingEnabled = true;
             this.lbxDijsktra.HorizontalScrollbar = true;
             this.lbxDijsktra.ItemHeight = 16;
-            this.lbxDijsktra.Location = new System.Drawing.Point(20, 427);
+            this.lbxDijsktra.Location = new System.Drawing.Point(2, 433);
             this.lbxDijsktra.Name = "lbxDijsktra";
-            this.lbxDijsktra.Size = new System.Drawing.Size(352, 148);
+            this.lbxDijsktra.Size = new System.Drawing.Size(359, 148);
             this.lbxDijsktra.TabIndex = 22;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(120, 396);
+            this.label2.Location = new System.Drawing.Point(109, 405);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(124, 16);
             this.label2.TabIndex = 23;
@@ -291,7 +291,7 @@
             // 
             // btnSalir
             // 
-            this.btnSalir.Location = new System.Drawing.Point(1074, 587);
+            this.btnSalir.Location = new System.Drawing.Point(1065, 599);
             this.btnSalir.Name = "btnSalir";
             this.btnSalir.Size = new System.Drawing.Size(105, 44);
             this.btnSalir.TabIndex = 27;
@@ -301,7 +301,7 @@
             // 
             // btnLimpiar
             // 
-            this.btnLimpiar.Location = new System.Drawing.Point(951, 587);
+            this.btnLimpiar.Location = new System.Drawing.Point(951, 599);
             this.btnLimpiar.Name = "btnLimpiar";
             this.btnLimpiar.Size = new System.Drawing.Size(105, 44);
             this.btnLimpiar.TabIndex = 28;
@@ -314,15 +314,15 @@
             this.lbxFloyd.FormattingEnabled = true;
             this.lbxFloyd.HorizontalScrollbar = true;
             this.lbxFloyd.ItemHeight = 16;
-            this.lbxFloyd.Location = new System.Drawing.Point(788, 369);
+            this.lbxFloyd.Location = new System.Drawing.Point(814, 369);
             this.lbxFloyd.Name = "lbxFloyd";
-            this.lbxFloyd.Size = new System.Drawing.Size(382, 212);
+            this.lbxFloyd.Size = new System.Drawing.Size(406, 212);
             this.lbxFloyd.TabIndex = 29;
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(932, 350);
+            this.label5.Location = new System.Drawing.Point(943, 350);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(113, 16);
             this.label5.TabIndex = 30;
@@ -333,7 +333,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.LightGray;
-            this.ClientSize = new System.Drawing.Size(1206, 652);
+            this.ClientSize = new System.Drawing.Size(1232, 676);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.lbxFloyd);
             this.Controls.Add(this.btnLimpiar);
