@@ -104,12 +104,38 @@ namespace AplicativoGrafos
             floyd.BuscarCaminos();
 
             this.lbxRecorridos.Items.Clear();
-            this.lbxRecorridos.Items.Add("Matriz de recorridos:");
-            this.lbxRecorridos.Items.AddRange(ConvertirMatrizAStringArray(floyd.MatrizRecorridos()));
-
             this.lbxPonderaciones.Items.Clear();
-            this.lbxPonderaciones.Items.Add("Matriz de Ponderaciones:");
-            this.lbxPonderaciones.Items.AddRange(ConvertirMatrizAStringArray(floyd.MatrizPesos()));
+
+            for (int i = 0; i < floyd.CambiosMatrizRecorridos.Count; i++)
+            {
+                this.lbxRecorridos.Items.Add($"Versión {i + 1}:");
+                this.lbxRecorridos.Items.AddRange(ConvertirMatrizAStringArray(floyd.CambiosMatrizRecorridos[i]));
+
+                this.lbxPonderaciones.Items.Add($"Versión {i + 1}:");
+                this.lbxPonderaciones.Items.AddRange(ConvertirMatrizAStringArray(floyd.CambiosMatrizPesos[i]));
+            }
+
+            this.lbxFloyd.Items.Clear();
+            this.lbxFloyd.Items.Add("Caminos más cortos entre todos los nodos:");
+
+            foreach (var nodo1 in nodosExistentes)
+            {
+                foreach (var nodo2 in nodosExistentes)
+                {
+                    if (nodo1 != nodo2)
+                    {
+                        try
+                        {
+                            var camino = floyd.DarCaminos(nodo1.Nombre, nodo2.Nombre);
+                            this.lbxFloyd.Items.Add($"Camino de {nodo1.Nombre} a {nodo2.Nombre}: {camino}");
+                        }
+                        catch (ErroresFloyd ex)
+                        {
+                            this.lbxFloyd.Items.Add($"Camino de {nodo1.Nombre} a {nodo2.Nombre}: {ex.Message}");
+                        }
+                    }
+                }
+            }
         }
 
         private string[] ConvertirMatrizAStringArray(string matriz)
@@ -187,7 +213,7 @@ namespace AplicativoGrafos
             this.txtNodo1.Text = "";
             this.txtNodo2.Text = "";
             this.txtNodoInicio.Text = "";
-            
+
             GC.Collect();
         }
     }
