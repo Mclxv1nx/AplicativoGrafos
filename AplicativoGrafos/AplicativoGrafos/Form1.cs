@@ -69,6 +69,9 @@ namespace AplicativoGrafos
             nodo1.Aristas.Add(aristaConexion);
             dijkstra.AgregarArista(nodoNombre1, nodoNombre2, peso);
 
+            // Ordenar la lista de nodos
+            nodosExistentes = nodosExistentes.OrderBy(n => n.Nombre).ToList();
+
             // Actualizar la interfaz de usuario
             this.lbxRespuestas.Items.Clear(); // Es necesario primero siempre limpiar la lista.
             this.lblCont.Text = contador.ToString();
@@ -78,6 +81,7 @@ namespace AplicativoGrafos
             // Mostrar la estructura actual del grafo en el ListBox
             MostrarEstructuraGrafo();
         }
+
 
         private void MostrarEstructuraGrafo()
         {

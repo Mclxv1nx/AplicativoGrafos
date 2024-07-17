@@ -48,7 +48,7 @@ namespace AplicativoGrafos
         /// <param name="nodos">Se envian los nodos que se usarán en el algoritmo en un arreglo</param>
         public GFloyd(NodoF[] nodos)
         {
-            this.nodos = nodos;
+            this.nodos = nodos.OrderBy(n => n.Nombre).ToArray();
             pesos = new int[nodos.Length, nodos.Length];
             recorridos = new NodoF[nodos.Length, nodos.Length];
 
