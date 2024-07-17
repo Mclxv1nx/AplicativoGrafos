@@ -49,7 +49,9 @@ namespace AplicativoGrafos
             
             //Ejecuto el algoritmo
             floyd.BuscarCaminos();
-            Console.WriteLine(floyd.DarTodoslosCaminos());*/
+            Console.WriteLine(floyd.DarTodoslosCaminos());
+            Console.WriteLine(floyd.CambiosMatrizPesos);
+            Console.WriteLine(floyd.CambiosMatrizRecorridos);*/
             //Segundo grafo 
             /*NodoF v1 = new NodoF("V1");
             NodoF v2 = new NodoF("V2");

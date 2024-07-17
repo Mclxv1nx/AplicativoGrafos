@@ -18,6 +18,14 @@ namespace AplicativoGrafos
         /// Que estarán presentes en todo el algoritmo.
         /// </summary>
         private NodoF[] nodos; //Esta propiedad no será publica
+        /// <summary>
+        /// A pedido de Adrián. Solo es un guardado en cadenas sobre las versiones de la Matriz de Recorridos
+        /// </summary>
+        public List<string> CambiosMatrizRecorridos = new List<string>();
+        /// <summary>
+        /// A pedido de Adrián. Solo es un guardado en cadenas sobre las versiones de la Matriz de Pesos
+        /// </summary>
+        public List<string> CambiosMatrizPesos = new List<string>();
 
         /// <summary>
         /// Matriz bidimensional que guarda los pesos. 
@@ -32,6 +40,7 @@ namespace AplicativoGrafos
         /// Será la variable con la que se comparará cumpliendo un papel representativo de Infinito. 
         /// </summary>
         public static int Infinito { get => infinito; set => infinito = value; }
+        
 
         /// <summary>
         /// Constructor de la clase Grafo correspondiente al algoritmo de Floyd.
@@ -62,11 +71,15 @@ namespace AplicativoGrafos
             //Reviso como empezaron las matrices
             Console.WriteLine(MatrizRecorridos());
             Console.WriteLine(MatrizPesos());
+            CambiosMatrizRecorridos.Add(MatrizRecorridos());  //Guardado de la versión
+            CambiosMatrizPesos.Add(MatrizPesos()); 
 
             //Primero buscamos los que se conectan y los que no
             BuscarConexiones();
             Console.WriteLine("Busqueda de Conexiones terminada:");
             Console.WriteLine(MatrizPesos());
+            CambiosMatrizRecorridos.Add(MatrizRecorridos()); //Guardado de la versión
+            CambiosMatrizPesos.Add(MatrizPesos());
 
             //Ahora procedemos a evaluar cada nodo.
             EvaluarNodos();
@@ -101,7 +114,7 @@ namespace AplicativoGrafos
                         if (pesos[i, k] == -1) continue;
                         //Luego, como es la primera busqueda sabemos que 
                         //por defecto todo es 0, asi que los que son 0 se pone infinito
-                        else if (nodos[k] != nodos[i].Aristas[j].Nodo 
+                        else if (nodos[k] != nodos[i].Aristas[j].Nodo
                             && pesos[i, k] == 0)
                             pesos[i, k] = infinito;
                         //Solo por esta primera ocasión se reemplaza cualquier valor
@@ -159,6 +172,13 @@ namespace AplicativoGrafos
                             }
                             //Ahora solo se repite el ciclo. 
                         }
+                        //Guardado de la version
+                        if (MatrizRecorridos() != CambiosMatrizRecorridos.Last() &&
+                            MatrizPesos() != CambiosMatrizPesos.Last())
+                        {
+                            CambiosMatrizRecorridos.Add(MatrizRecorridos());
+                            CambiosMatrizPesos.Add(MatrizPesos());
+                        }
                     }
                 }
             }
@@ -179,17 +199,17 @@ namespace AplicativoGrafos
             {
                 //Si falla uno, inmediatamente se guarda su mensaje y se intenta con el segundo algoritmo
                 return ComprobarCamino(
-                    PrimerAlgoritmo(nodoOrigen, nodoBusqueda), 
-                    nodos[IndexOf(nodoOrigen)], 
+                    PrimerAlgoritmo(nodoOrigen, nodoBusqueda),
+                    nodos[IndexOf(nodoOrigen)],
                     nodos[IndexOf(nodoBusqueda)]);
             }
             catch (ErroresFloyd mensaje) { caminos = mensaje.ToString(); }
-            
+
             try
             {
                 //Si este falla ya solo quedaría que mandar el mensaje de error
-                return ComprobarCamino(SegundoAlgoritmo(nodoOrigen, nodoBusqueda), 
-                    nodos[IndexOf(nodoOrigen)], 
+                return ComprobarCamino(SegundoAlgoritmo(nodoOrigen, nodoBusqueda),
+                    nodos[IndexOf(nodoOrigen)],
                     nodos[IndexOf(nodoBusqueda)]);
             }
             catch (ErroresFloyd mensaje) { caminos = mensaje.ToString(); }
@@ -217,7 +237,7 @@ namespace AplicativoGrafos
             //En el caso de que sea el mismo nodo que se busca también se descarta. 
             if (nodoBuscar == nodoBuscando) throw new ErroresFloyd("El camino es a si mismo");
             //En el caso de que su correspondiente en la matriz sea infinito significa que no tiene conexiones. 
-            if (pesos[nodoBuscar, nodoBuscando] == infinito) 
+            if (pesos[nodoBuscar, nodoBuscando] == infinito)
                 throw new ErroresFloyd($"El nodo {nodoOrigen} no tiene conexiones hacia {nodoBusqueda}");
 
             //Creo un Nodo aux para el bucle siguiente
@@ -319,13 +339,13 @@ namespace AplicativoGrafos
         /// <exception cref="ErroresFloyd">En caso de fallar significa que definitivamente no hay caminos</exception>
         private string ComprobarCamino(List<NodoF> caminos, NodoF nodoOrigen, NodoF nodoBusqueda)
         {
-            string camino = ""; 
+            string camino = "";
             NodoF aux = caminos[0];
             int index = 0;
 
             //Buscará entre todos los hijos y comprobará que entre ellos se encuentren
             //los nodos que están en la lista.
-            while(aux != nodoBusqueda && index < caminos.Count - 1)
+            while (aux != nodoBusqueda && index < caminos.Count - 1)
             {
                 if (aux != null) camino += aux.Nombre + ", ";
                 aux = caminos[index].BuscarHijo(caminos[++index]);
